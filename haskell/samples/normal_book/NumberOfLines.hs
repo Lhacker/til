@@ -1,0 +1,1 @@
+numberOfLines = length . lines
