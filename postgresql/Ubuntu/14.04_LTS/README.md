@@ -16,7 +16,7 @@ postgres@...% createdb mydb -U user1 # <- by default, "Peer" authentication will
 # edit /etc/postgresql/`version`/main/pg_hba.conf
 postgres@...% cp /etc/postgresql/9.3/main/pg_hba.conf{,.bak}
 postgres@...% vi /etc/postgresql/9.3/main/pg_hba.conf
-# local   all             all                                     peer
+local   all             all                                     peer
 -> local   all             all                                     trust
 
 postgres@...% /etc/init.d/postgresql reload
@@ -27,6 +27,11 @@ template1=# alter role postgres with password '...';
 template1=# alter role user1 with password '...';
 template1=# ¥q
 
+postgres@...% vi /etc/postgresql/9.3/main/pg_hba.conf
+local   all             all                                     trust
+-> local   all             all                                     md5
+postgres@...% /etc/init.d/postgresql reload
 postgres@...% exit
+
 user1@...% psql mydb
 ```
