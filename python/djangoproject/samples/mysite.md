@@ -18,6 +18,7 @@ create database && grant
 ```sql
 > create database polls character set utf8;
 > grant all on polls.* to 'django'@'localhost';
+> grant all on test_polls.* to 'django'@'localhost';
 > \q
 ```
 
