@@ -20,5 +20,8 @@ for i in range(2, 5, 2):
 
 print()
 
+for k, v in {'gallahad': 'the pure', 'robin': 'the brave'}.items():
+    print(k, v, sep=': ')
+
 for i, w in enumerate(words):
     print(i, w)
