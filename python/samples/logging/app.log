@@ -1,0 +1,2 @@
+10 DEBUG logger_read_config_sample.py logger_read_config_sample.py logger_read_config_sample 7 1460886477.620704 17/04/2016 18:47:57 620 33 140735112994816 41034 logger=app debug message
+20 INFO logger_read_config_sample.py logger_read_config_sample.py logger_read_config_sample 8 1460886477.621043 17/04/2016 18:47:57 621 33 140735112994816 41034 logger=app info message
