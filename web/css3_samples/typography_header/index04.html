@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta http-equiv="Content-Style-Type" charset="text/css" />
+    <meta http-equiv="Content-Script-Type" charset="text/javascript" />
+    <style type="text/css">
+.ttl1, .ttl2 {
+  position: relative;
+  line-height: 1;
+  margin: 30px 20px 10px 20px;
+  padding: 10px 5px 10px 20px;
+  border-bottom: 1px solid #bababa;
+  text-shadow: 0 -1px 0 #000;
+  box-shadow: 0 2px 3px #ccc; 
+  font-size: 110%;
+  color: #fff;
+}
+
+.ttl1, .ttl2 {
+  background: #e4016f;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e4016f), to(#f13690));
+  background-image: linear-gradient(top, #e4016f, #f13690);
+}
+
+.ttl1:before, .ttl1:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  height: 0;
+  width: 0;
+  border: 5px solid transparent;
+  border-top: 5px solid #91434e;
+}
+
+.ttl1:before {
+  right: 0;
+  border-left: 5px solid #91434e;
+}
+
+.ttl1:after {
+  left: 0;
+  border-right: 5px solid #91434e;
+}
+
+.ttl2:before, .ttl2:after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  height: 0;
+  width: 0;
+  border: 18px solid #e4016f;
+  z-index: -1;
+}
+
+.ttl2:before {
+  right: -22px;
+  border-right-color: transparent;
+}
+
+.ttl2:after {
+  left: -22px;
+  border-left-color: transparent;
+}
+    </style>
+  </head>
+  <body>
+    <div id="container" class="container">
+      <div id="content" class="content">
+        <h2 class="ttl1">今週の注目ニュース</h2>
+        <h2 class="ttl2">今週の注目トピックス</h2>
+      </div>
+    </div>
+    <script type="text/javascript">
+    </script>
+  </body>
+</html>

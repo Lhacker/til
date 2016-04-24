@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta http-equiv="Content-Style-Type" charset="text/css" />
+    <meta http-equiv="Content-Script-Type" charset="text/javascript" />
+    <style type="text/css">
+.button {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.button a {
+  display: block;
+  border: 1px solid #d3d3d1;
+  background-color: #fff;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(.48, #f4f3f2), color-stop(.48, #fcfcfa));
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  text-align: center;
+  margin: 15px 0;
+  color: #444;
+}
+
+.button a span {
+  display: block;
+  padding: 15px 0;
+}
+
+.stripe1 {
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, 0.5)), color-stop(.5, transparent), to(transparent));
+  -webkit-background-size: 6px;
+}
+
+.stripe2 {
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, color-stop(.5, rgba(255, 255, 255, 0.5)), color-stop(.5, transparent), to(transparent));
+  -webkit-background-size: 14px;
+}
+
+.stripe3 {
+  background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(255, 255, 255, 0.5)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, 0.5)), color-stop(.75, rgba(255, 255, 255, 0.5)), color-stop(.75, transparent), to(transparent));
+  -webkit-background-size: 14px;
+}
+
+.diamond{
+  background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(255,255,255,0.5)), color-stop(.25, transparent), to(transparent)),
+      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(255,255,255,0.5)), color-stop(.25, transparent), to(transparent)),
+      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, rgba(255,255,255,0.5))),-webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, rgba(255,255,255,0.5)));
+  -webkit-background-size: 14px;
+}
+.check{
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, transparent), color-stop(.5, rgba(255,255,255,0.5)), to(rgba(255,255,255,0.5))),
+      -webkit-gradient(linear, 0 0, 100% 0, color-stop(.5, transparent), color-stop(.5, rgba(255,255,255,0.5)), to(rgba(255,255,255,0.5)));
+  -webkit-background-size: 5px;
+}
+</style>
+  </head>
+  <body>
+    <div id="container" class="container">
+      <div id="content" class="content">
+        <h1>Hello</h1>
+        <ul class="button">
+          <li><a href="#"><span class="stripe1">横ストライプ</span></a></li>
+          <li><a href="#"><span class="stripe2">縦ストライプ</span></a></li>
+          <li><a href="#"><span class="stripe3">斜めストライプ</span></a></li>
+          <li><a href="#"><span class="diamond">菱形</span></a></li>
+          <li><a href="#"><span class="check">チェック</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript">
+    </script>
+  </body>
+</html>
