@@ -1,0 +1,79 @@
+body {
+  background-color: #bee561;
+  background-image: radial-gradient(#ffffff, rgba(255, 255, 255, 0.2) 5px, transparent 5px), radial-gradient(#ffffff, rgba(255, 255, 255, 0.2) 5px, transparent 5px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+.text span {
+  color: #ffffff;
+  cursor: default;
+  display: block;
+  float: left;
+  border-radius: 50%;
+  line-height: 55px;
+  text-align: center;
+  width: 55px;
+  height: 55px;
+  margin: 25px 0 0 2px;
+  transition: all 0.5s ease-in-out;
+}
+
+.text span:nth-child(odd) {
+  background: #8ec115;
+}
+
+.text span:nth-child(even) {
+  background: #ffb500;
+}
+
+.text span:nth-child(1) {
+  transform: translate(-100%) translate(20px);
+}
+.text span:nth-child(2) {
+  transform: translate(-200%) translate(40px);
+}
+.text span:nth-child(3) {
+  transform: translate(-300%) translate(60px);
+}
+.text span:nth-child(4) {
+  transform: translate(-400%) translate(80px);
+}
+.text span:nth-child(5) {
+  transform: translate(-500%) translate(100px);
+}
+.text span:nth-child(6) {
+  transform: translate(-600%) translate(120px);
+}
+
+.text span:first-child {
+  margin-left: 102px;
+}
+
+.text span:not(:last-child) {
+  font-family: "Arial Black", sans-selif;
+  opacity: 0;
+  pointer-events: none;
+}
+.text span:last-child {
+  background: #ffba00;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), -1px -1px 2px rgba(0, 0, 0, 0.2),
+    inset 1px 1px 30px rgba(255, 167, 0, 0.3), inset -1px -1px 30px rgba(255, 167, 0, 0.3);
+  font-size: 45px;
+  line-height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  z-index: 100;
+}
+
+.text:hover span:not(:last-child) {
+  opacity: 1;
+  transform: translate(0%);
+}
+
+.text:hover span:last-child {
+  transform: scale(1.1);
+}
