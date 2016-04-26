@@ -1,0 +1,18 @@
+p.texture-text {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 85px;
+  font-weight: bold;
+  color: #eb65a4;
+  position: relative;
+  text-shadow: 0 0 14px #fdacd2, 0 0 9px #fdacd2, 0 0 6px #fdacd2, 0 0 3px #fdacd2;
+}
+
+p.texture-text:before {
+  background: url(../images/cover.png) repeat;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
