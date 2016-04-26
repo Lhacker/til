@@ -1,0 +1,49 @@
+body {
+  background-color: #cfcfcf;
+}
+
+.text span {
+  background: #ffb2b2;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset -1px -1px 9px rgba(255, 255, 255, 1), inset 1px 1px 9px rgba(255, 255, 255, 1);
+  display: inline-block;
+  width: 1.5em;
+  line-height: 1.5em;
+  position: relative;
+  text-align: center;
+  margin: 0 15px 0 0;
+  transform: rotate(-8deg);
+  font-size: 110%;
+}
+
+.text span:nth-child(7n - 5) {
+  background: #95d665;
+  transform: rotate(8deg);
+}
+
+.text span:nth-child(7n - 4) {
+  background: #6dd9d8;
+  transform: translateY(3px) rotate(-4deg);
+}
+
+.text span:nth-child(7n - 3) {
+  background: #ffd634;
+  transform: rotate(6deg);
+}
+
+.text span:nth-child(7n - 2) {
+  background: #ff8034;
+  transform: translateY(-2px) rotate(-6deg);
+}
+
+.text span:nth-child(7n - 1) {
+  background: #ff9dc7;
+  transform: translateY(-4px) rotate(8deg);
+}
+
+.text span:nth-child(7n) {
+  background: #9ebcff;
+  transform: translateY(4px) rotate(-4deg);
+}
+
+
