@@ -1,0 +1,65 @@
+body {
+  background: #ecebe8;
+}
+
+.button {
+  padding: 5px;
+  display: block;
+  float: left;
+  position: relative;
+  height: 30px;
+  width: 120px;
+  background: #fbfaf4;
+  background: -webkit-gradient(linear, left top, left bottom, from(#e3dfde), to(#fbfaf4));
+  background: -moz-linear-gradient(top,  #e3dfde,  #fbfaf4);
+  background: -o-linear-gradient(top,  #e3dfde,  #fbfaf4);
+  background: -ms-linear-gradient(top,  #e3dfde,  #fbfaf4);
+  background: linear-gradient(top,  #e3dfde,  #fbfaf4);
+}
+
+.button a,
+.button a:hover,
+.button a:visited {
+  display: block;
+  position: relative;
+  height: 28px;
+  width: 117px;
+  padding-left: 1px;
+  text-decoration: none;
+  line-height: 27px;
+  text-align: center;
+  color: #7d8383;
+  text-shadow: 0px 1px 0px #fafafa;
+  background: #fbfaf4;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fbfaf4), to(#ece8e6));
+  background: -moz-linear-gradient(top, #fbfaf4, #ece8e6);
+  background: -o-linear-gradient(top, #fbfaf4, #ece8e6);
+  background: -ms-linear-gradient(top, #fbfaf4, #ece8e6);
+  background: linear-gradient(top, #fbfaf4, #ece8e6);
+  border: 1px solid #dcd9d8;
+  border-bottom: 1px solid #c1c1bd;
+  box-shadow: 0 0 1px #c7c5c1;
+}
+
+.br1, .br1 a {
+  border-radius: 3px;
+}
+
+.br2, .br2 a {
+  border-radius: 15px;;
+}
+
+.button a:hover {
+  color: #9a9f9f;
+  background: #fbfbf9;
+}
+
+.button a:active, .button a.on {
+  color: #fb9c53;
+  background: #ece8e6;
+  line-height: 31px;
+  height: 28px;
+  width: 119px;
+  border: none;
+  box-shadow: 0 1px 1px #cccbc9, inset 0 1px 1px rgba(0, 0, 0, 0.3);
+}
