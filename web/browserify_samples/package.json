@@ -1,0 +1,14 @@
+{
+  "name": "browserify_samples",
+  "version": "1.0.0",
+  "description": "browserify samples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shiryu",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^13.0.1"
+  }
+}
