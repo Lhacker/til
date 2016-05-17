@@ -1,0 +1,15 @@
+{
+  "name": "webpack_samples",
+  "version": "1.0.0",
+  "description": "webpack samples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shiryu",
+  "license": "MIT",
+  "devDependencies": {
+    "vue": "^1.0.24",
+    "webpack": "^1.13.0"
+  }
+}
