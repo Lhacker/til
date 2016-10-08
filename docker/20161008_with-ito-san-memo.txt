@@ -1,0 +1,69 @@
+ssh marsa@192.168.50.104 # pass: marsa
+sudo route add -net <> <gateway>
+[root@apl-server001 elasticsearch]# pwd
+/usr/local/repre/docker_zip/compose/elasticsearch
+/usr/local/repre/docker_zip/dockerfiles/nosql/elasticsearch/
+
+[root@apl-server001 elasticsearch]# ls
+base-compose.yml  docker-compose.yml  docker-compose.yml.1  docker-compose.yml.2  elasticsearch.sh
+[root@apl-server001 elasticsearch]#
+
+ncenter command
+
+todo
+- update cluster name
+- put file
+- check by es-head => confirm data will balanced
+
+
+memo
+[root@77cb9eb669e2 /]#
+cp /usr/local/elasticsearch-2.2.2/config/elasticsearch.yml{,.bak}
+vi /usr/local/elasticsearch-2.2.2/config/elasticsearch.yml # update cluster.name
+sed -i 's|cluster.name.*|cluster.name
+# /usr/local/elasticsearch-2.2.2/bin/plugin install mobz/elasticsearch-head # ssh dame
+
+[root@apl-server001 ] wget http://github.com/mobz/elasticsearch-head/archive/master.zip -P /data
+/usr/local/elasticsearch-2.2.2/bin/plugin install file:/data/master.zip
+
+vi /usr/local/elasticsearch-2.2.2/config/elasticsearch.yml # update data dir & log dir
+
+# path.data: /path/to/data
+path.data: /data/1
+#
+# Path to log files:
+#
+# path.logs: /path/to/logs
+path.logs: /usr/local/var/1
+#
+
+[root@77cb9eb669e2 /]#
+/usr/local/elasticsearch-2.2.2/bin/elasticsearch -d -Des.insecure.allow.root=true
+curl http://localhost:9200/
+
+# check container ip
+docker inspect --format '{{ .NetworkSettings.IPAddress }}' 77cb9eb669e2
+
+
+# retry
+docker-compose up -d
+docker-compose stop
+docker-compose kill
+docker-compose rm
+
+docker rm $(docker ps -a -q)
+
+# confirm netstat
+[host] netstat -an
+/usr/local/elasticsearch-2.2.2/bin/elasticsearch -d
+curl http://localhost:9200/
+
+
+# insert index data(json)
+url: coupon_db/coupon/1
+{
+  "coupon_cd": "hoge",
+  "coupon_name": "first coupon",
+  "discount_value": 100
+}
+
