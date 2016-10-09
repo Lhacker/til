@@ -66,4 +66,29 @@ url: coupon_db/coupon/1
   "coupon_name": "first coupon",
   "discount_value": 100
 }
+{
+    "coupon_cd": "fuga",
+    "coupon_name": "2nd coupon",
+    "discount_value": 200
+}
+{
+      "coupon_cd": "foo",
+      "coupon_name": "3rd coupon",
+      "discount_value": 300
+}
+{
+    "coupon_cd": "piyo",
+    "coupon_name": "4th coupon",
+    "discount_value": 1000
+}
 
+
+# mlocate command
+yum install mlocate
+updatedb
+
+
+
+# fluentd
+position path
+locate td-agent
