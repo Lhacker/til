@@ -1,0 +1,8 @@
+version: '2.0'
+services:
+  # up by "docker-compose up -d"
+  centos_min:
+    image: centos:7
+    container_name: centos_min
+    privileged: true
+    command: /sbin/init
