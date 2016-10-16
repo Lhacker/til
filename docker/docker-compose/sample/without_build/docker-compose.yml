@@ -3,6 +3,7 @@ services:
   kibana1:
     image: centos:7_kibana_installed_wip
     container_name: kibana1
+    hostname: kibana1
     privileged: true
     entrypoint: /sbin/init
     ports:
@@ -11,6 +12,7 @@ services:
   kibana2:
     image: centos:7_kibana_installed_wip
     container_name: kibana2
+    hostname: kibana2
     privileged: true
     entrypoint: /sbin/init
     ports:
@@ -19,6 +21,7 @@ services:
   kibana3:
     image: centos:7_kibana_installed_wip
     container_name: kibana3
+    hostname: kibana3
     privileged: true
     entrypoint: /sbin/init
     ports:
