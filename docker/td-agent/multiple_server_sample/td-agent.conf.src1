@@ -1,0 +1,46 @@
+####
+## Output descriptions:
+##
+
+# first created match
+<match dest.**>
+  @type forward
+  <server>
+    name dest.data.src1
+    host dest1
+    port 24230
+  </server>
+#  flush_interval 1s
+  flush_interval 1s
+#  @type file
+#  path /data/dest.log
+</match>
+
+####
+## Source descriptions:
+##
+
+## first created source
+<source>
+  @type tail
+  format none
+  path /data/src1.log
+  pos_file /data/src1.pos
+  tag dest.data.src1
+</source>
+
+# HTTP input
+# POST http://localhost:8888/<tag>?json=<json>
+# POST http://localhost:8888/td.myapp.login?json={"user"%3A"me"}
+# @see http://docs.fluentd.org/articles/in_http
+<source>
+  @type http
+  port 8888
+</source>
+
+## live debugging agent
+<source>
+  @type debug_agent
+  bind 127.0.0.1
+  port 24230
+</source>
