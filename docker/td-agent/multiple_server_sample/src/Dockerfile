@@ -12,4 +12,4 @@ RUN yum update -y && \
 RUN curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
 ADD ./td-agent.conf.src /etc/td-agent/td-agent.conf
 RUN systemctl enable td-agent && \
-  systemctl td-agent restart
+  sed -i 's/TD_AGENT_USER=td-agent/TD_AGENT_USER=root/' -i 's/TD_AGENT_GROUP=td-agent/TD_AGENT_GROUP=root/' /etc/inti.d/td-agent
