@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta http-equiv="Content-Style-Type" charset="text/css" />
+    <meta http-equiv="Content-Script-Type" charset="text/javascript" />
+    <script
+        src="http://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+        crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="content">
+        <h1>hello</h1>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $.ajax({
+        url: "http://httpbin.org/post",
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        headers: {},
+        data: '{"hoge": "fuga"}',
+        success: function(data) {
+          console.log(JSON.stringify(data));
+        },
+        error: function(data) {
+          console.log("error:");
+          console.log(JSON.stringify(data));
+        }
+      });
+    </script>
+  </body>
+</html>
