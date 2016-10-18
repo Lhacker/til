@@ -1,0 +1,9 @@
+version: '2.0'
+services:
+  td-agent_destination:
+    image: centos:7_td-agent_installed
+    container_name: td-agent_destination
+    hostname: td-agent_destination
+    privileged: true
+    entrypoint: /sbin/init
+    link: 
