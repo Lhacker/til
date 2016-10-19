@@ -3,18 +3,15 @@
 ##
 
 # first created match
-<match dest.**>
-  @type forward
-  <server>
-    name dest.data.src1
-    host dest1
-    port 24230
-  </server>
+#<match dest.**>
+#  @type forward
+#  <server>
+#    name dest.data.src1
+#    host dest1
+#    port 24230
+#  </server>
 #  flush_interval 1s
-  flush_interval 1s
-#  @type file
-#  path /data/dest.log
-</match>
+#</match>
 
 ####
 ## Source descriptions:
