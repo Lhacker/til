@@ -6,7 +6,8 @@ ENV TZ JST-9
 RUN yum update -y && yum clean all && \
   yum install -y chrony && \
   systemctl enable chronyd && \
-  sed -ri 's/Defaults\s+requiretty.*/#\0/' /etc/sudoers
+  sed -ri 's/Defaults\s+requiretty.*/#\0/' /etc/sudoers && \
+  mkdir -pv /data
 
 # install td-agent
 RUN curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
