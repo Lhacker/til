@@ -15,7 +15,7 @@
 ## @see http://docs.fluentd.org/articles/in_forward
 <source>
   @type forward
-  port 24230
+  port 24231
 </source>
 
 #<source>
