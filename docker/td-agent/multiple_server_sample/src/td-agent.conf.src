@@ -8,7 +8,8 @@
 #  <server>
 #    name dest.data.src1
 #    host dest1
-#    port 24230
+#    #port 24224
+#    port 24231
 #  </server>
 #  flush_interval 1s
 #</match>
@@ -21,8 +22,8 @@
 <source>
   @type tail
   format none
-  path /data/src1.log
-  pos_file /data/src1.pos
+  path /data/src.log
+  pos_file /data/src.pos
   tag dest.data.src1
 </source>
 
