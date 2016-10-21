@@ -1,17 +1,17 @@
 version: '2.0'
 services:
   src1:
-    image: centos:7_td-agent_installed
+    image: centos:7_td-agent_src1
     container_name: td-agent_src1
     privileged: true
     entrypoint: /sbin/init
   src2:
-    image: centos:7_td-agent_installed
+    image: centos:7_td-agent_src2
     container_name: td-agent_src2
     privileged: true
     entrypoint: /sbin/init
   dest1:
-    image: centos:7_td-agent_installed
+    image: centos:7_td-agent_dest1
     container_name: td-agent_dest1
     privileged: true
     entrypoint: /sbin/init
