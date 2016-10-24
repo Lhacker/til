@@ -1,0 +1,35 @@
+####
+## Output descriptions:
+##
+
+#<match dest.**>
+#  @type file
+#  path /data/dest.log
+#</match>
+<match dest.**>
+  @type elasticsearch
+  include_tag_key true
+  host localhost
+  port 9200
+  logstash_format true
+  flush_interval 1s
+  buffer_type file
+  buffer_path /var/log/td-agent/buffer/elasticsearch.buffer
+</match>
+
+####
+## Source descriptions:
+##
+
+## built-in TCP input
+## @see http://docs.fluentd.org/articles/in_forward
+<source>
+  @type forward
+  #port 24224
+  port 24231
+</source>
+
+#<source>
+#  @type http
+#  port 8888
+#</source>
