@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:7_updated
 MAINTAINER Lhacker
 
 ENV TZ JST-9
@@ -21,14 +21,14 @@ RUN systemctl enable td-agent && \
 
 # setup elasticsearch environment
 RUN mkdir -pv /usr/src/redhat/RPMS/ && \
+  yum install -y wget && \
   wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jdk-8u102-linux-x64.rpm -P /usr/src/redhat/RPMS/ && \
-  yum localinstall /usr/src/redhat/RPMS/jdk-8u102-linux-x64.rpm
+  yum localinstall -y /usr/src/redhat/RPMS/jdk-8u102-linux-x64.rpm
 
 # install elasticsearch
 ADD elasticsearch.repo /etc/yum.repos.d/
 RUN rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch && \
   yum install -y elasticsearch && \
-  systemctl daemon-reload && \
   systemctl enable elasticsearch.service && \
   /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head --verbose
 ADD ./elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
