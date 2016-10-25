@@ -30,5 +30,7 @@ ADD elasticsearch.repo /etc/yum.repos.d/
 RUN rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch && \
   yum install -y elasticsearch && \
   systemctl enable elasticsearch.service && \
-  /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head --verbose
+  /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head --verbose && \
+  chown elasticsearch:elasticsearch /data && \
+  chown elasticsearch:elasticsearch /var/log/elasticsearch
 ADD ./elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
