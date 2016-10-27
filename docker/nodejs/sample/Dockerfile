@@ -1,18 +1,17 @@
 FROM centos:7_updated
 MAINTAINER Lhacker
 
-ENV NODEBREW_ROOT /usr/local/nodebrew
-ENV PATH $NODEBREW_ROOT/current/bin:${PATH}
-ENV NODEJS_VERSION v7.0.0
+ARG NODEBREW_ROOT=${NODEBREW_ROOT:-/usr/local/nodebrew}
+ARG NODEJS_VERSION=${NODEJS_VERSION:-v7.0.0}
 
-# setup environment
-RUN yum update -y && yum clean all && \
+RUN \
+: 'setup environment' && \ 
+  yum update -y && yum clean all && \
   yum install -y perl which && \
   echo "export NODEBREW_ROOT=${NODEBREW_ROOT}" >> /etc/profile.d/nodebrew.sh && \
-  echo "export PATH=${PATH}" >> /etc/profile.d/nodebrew.sh && \
-  source /etc/profile.d/nodebrew.sh
-
-# install node && nodebrew
-RUN curl -L git.io/nodebrew | perl - setup && \
-  nodebrew install install-binary $NODEJS_VERSION && \
+  echo "export PATH=${NODEBREW_ROOT}/current/bin:${PATH}" >> /etc/profile.d/nodebrew.sh && \
+  source /etc/profile.d/nodebrew.sh && \
+: 'install node && nodebrew' && \ 
+  curl -L git.io/nodebrew | perl - setup && \
+  nodebrew install-binary $NODEJS_VERSION && \
   nodebrew use $NODEJS_VERSION
