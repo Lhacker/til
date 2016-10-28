@@ -1,3 +1,7 @@
 If install by root user, `yo hubot` will fail because permission denied error will occur.
 
 So, will create hubot_user and do `npm install yo generator-hubot`(NOT npm install -g).
+
+We can't set bot name as "hubot"(Will refuse install). So please change the name.
+
+> yo hubot --owner="Lhacker" --name="bot" --description="hubot" --adapter="shell" --defaults=""
