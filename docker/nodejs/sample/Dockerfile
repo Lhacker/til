@@ -4,10 +4,11 @@ MAINTAINER Lhacker
 ARG NODEBREW_ROOT=${NODEBREW_ROOT:-/usr/local/nodebrew}
 ARG NODEJS_VERSION=${NODEJS_VERSION:-v7.0.0}
 
-RUN \
+RUN set -x && \
 : 'setup environment' && \ 
   yum update -y && yum clean all && \
   yum install -y perl which && \
+: 'set nodebrew env' && \
   echo "export NODEBREW_ROOT=${NODEBREW_ROOT}" >> /etc/profile.d/nodebrew.sh && \
   echo "export PATH=${NODEBREW_ROOT}/current/bin:${PATH}" >> /etc/profile.d/nodebrew.sh && \
   source /etc/profile.d/nodebrew.sh && \
