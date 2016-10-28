@@ -1,0 +1,3 @@
+If install by root user, `yo hubot` will fail because permission denied error will occur.
+
+So, will create hubot_user and do `npm install yo generator-hubot`(NOT npm install -g).
