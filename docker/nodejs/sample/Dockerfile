@@ -9,9 +9,9 @@ RUN set -x && \
   yum update -y && yum clean all && \
   yum install -y perl which && \
 : 'set nodebrew env' && \
-  echo "export NODEBREW_ROOT=${NODEBREW_ROOT}" >> /etc/profile.d/nodebrew.sh && \
-  echo "export PATH=${NODEBREW_ROOT}/current/bin:${PATH}" >> /etc/profile.d/nodebrew.sh && \
-  source /etc/profile.d/nodebrew.sh && \
+  echo "export NODEBREW_ROOT=${NODEBREW_ROOT}" >> /etc/profile.d/nodejs.sh && \
+  echo "export PATH=${NODEBREW_ROOT}/current/bin:${PATH}" >> /etc/profile.d/nodejs.sh && \
+  source /etc/profile.d/nodejs.sh && \
 : 'install node && nodebrew' && \ 
   curl -L git.io/nodebrew | perl - setup && \
   nodebrew install-binary $NODEJS_VERSION && \
