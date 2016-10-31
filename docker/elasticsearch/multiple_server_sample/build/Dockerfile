@@ -6,6 +6,7 @@ ENV JAVA_HOME /usr/java/default
 
 # setup td-agent environment
 RUN yum update -y && yum clean all && \
+  ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
   yum install -y chrony && \
   systemctl enable chronyd && \
   sed -ri 's/Defaults\s+requiretty.*/#\0/' /etc/sudoers && \
