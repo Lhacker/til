@@ -1,9 +1,11 @@
 FROM centos:7_updated
 MAINTAINER Lhacker
 
-# setup environment
 ENV TZ JST-9
+
+# setup environment
 RUN yum update -y && yum clean all && \
+  ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
   yum install -y chrony && \
   systemctl enable chronyd && \
   sed -ri 's/Defaults\s+requiretty.*/#\0/' /etc/sudoers && \
