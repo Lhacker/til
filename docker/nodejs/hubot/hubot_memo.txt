@@ -5,3 +5,7 @@ So, will create hubot_user and do `npm install yo generator-hubot`(NOT npm insta
 We can't set bot name as "hubot"(Will refuse install). So please change the name.
 
 > yo hubot --owner="Lhacker" --name="bot" --description="hubot" --adapter="shell" --defaults=""
+
+> yo hubot --owner="Lhacker" --name="bot" --adapter="slack" --defaults=""
+> HUBOT_SLACK_TOKEN=XXX
+> /myhubot/bin/hubot --adapter slack
