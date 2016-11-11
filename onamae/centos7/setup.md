@@ -6,6 +6,18 @@ yum install -y telnet wget traceroute tcpdump
 yum install -y bind-utils # will install dig, nslookup, host, nsupdate
 yum install -y perl ruby
 
+# add shell settings
+cat <<EOF > /etc/profile.d/docker.sh
+alias docker_i='docker images'
+alias docker_ps='docker ps -a'
+EOF
+
+cat <<EOF > /etc/profile.d/bash_settings.sh
+function cd {
+  builtin cd "\$@" && ls
+}
+EOF
+
 # change that wheel group user can use sudo without pass
 visudo
 usermod -aG wheel devuser
@@ -44,4 +56,5 @@ sudo usermod -aG docker devuser
 docker pull centos:7
 docker pull ubuntu:16.10
 docker pull alpine:3.4
+~/git/til/docker/base_image/build_centos7.sh
 ```
