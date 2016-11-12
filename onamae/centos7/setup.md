@@ -1,13 +1,23 @@
-```sh
+```sh root@server
 # install packages
 yum update -y; yum clean all
 yum install -y vim git
 yum install -y telnet wget traceroute tcpdump
 yum install -y bind-utils # will install dig, nslookup, host, nsupdate
+yum install -y iptables iptables-services
 yum install -y perl ruby
 
+systemctl disable firewalld
+systemctl stop firewalld
+systemctl enable iptables
+systemctl restart iptables
+
+# add iptables settings(upload local file by scp)
+
 # add shell settings
-cat <<EOF > /etc/profile.d/docker.sh
+cat <<EOF > /etc/profile.d/alias.sh
+alias rm='rm -i'
+alias ls='ls --color'
 alias docker_i='docker images'
 alias docker_ps='docker ps -a'
 EOF
@@ -23,10 +33,11 @@ visudo
 usermod -aG wheel devuser
 
 # could not update ssh port, so ssh is 22
-# update ssh as password = no
 # add ssh public key at root and devuser
+# update ssh as password = no
+```
 
-# <=== login as devuser
+```sh devuser@server
 # clone git repo
 mkdir -v ~/git; cd ~/git
 git clone https://github.com/Lhacker/til.git
@@ -51,7 +62,9 @@ if [ -z `sudo grep docker /etc/group` ]; then sudo groupadd docker; fi
 sudo usermod -aG docker root
 sudo usermod -aG docker devuser
 # re-login by devuser
+```
 
+```sh devuser@server
 # install docker base images
 docker pull centos:7
 docker pull ubuntu:16.10
