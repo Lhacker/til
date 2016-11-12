@@ -1,0 +1,12 @@
+FROM centos:7
+MAINTAINER Lhacker <starclown1@gmail.com>
+
+ARG ROOT_PASSWORD=${ROOT_PASSWORD:-root}
+
+RUN set -x && \
+  echo $ROOT_PASSWORD | passwd root --stdin && \
+  yum update -y && yum clean all && \
+  yum install -y vim less sudo && \
+  yum install -y telnet wget traceroute tcpdump && \
+  yum install -y bind-utils && \
+  :
