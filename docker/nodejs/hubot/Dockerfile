@@ -1,5 +1,5 @@
 FROM centos:7_nodejs_v7.0.0
-MAINTAINER Lhacker
+MAINTAINER Lhacker <starclown1@gmail.com>
 
 ENV HUBOT_DIR /myhubot
 
@@ -10,5 +10,5 @@ RUN set -x && \
   cd $HUBOT_DIR && \
   npm install -g yo generator-hubot hubot-slack && \
   sed -ri 's#downgradeRoot\(|sudoBlock\.apply#//\0#g' $(npm config get prefix)/lib/node_modules/yo/node_modules/root-check/index.js && \
-  (echo No | yo hubot --owner="Lhacker" --name="bot" --adapter="slack" --defaults) && \
+  (echo No | yo hubot --owner="Lhacker <starclown1@gmail.com>" --name="bot" --adapter="slack" --defaults) && \
   pwd && ls -latrh .

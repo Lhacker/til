@@ -1,5 +1,5 @@
 FROM centos:7_updated
-MAINTAINER Lhacker
+MAINTAINER Lhacker <starclown1@gmail.com>
 
 ARG NODEBREW_ROOT=${NODEBREW_ROOT:-/usr/local/nodebrew}
 ARG NODEJS_VERSION=${NODEJS_VERSION:-v7.0.0}

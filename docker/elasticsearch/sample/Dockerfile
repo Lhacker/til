@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER Lhacker
+MAINTAINER Lhacker <starclown1@gmail.com>
 
 ENV JAVA_HOME /usr/java/default
 ENV TZ Asia/Tokyo
