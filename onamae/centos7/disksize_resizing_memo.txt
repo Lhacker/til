@@ -1,0 +1,87 @@
+h1. Memo
+Originally, I don't know why but the disk size were assigned as
+/dev/mapper/centos-root => 50G
+/dev/mapper/centos-home => 120G
+
+So, I investigated how to resize the 2 device's volume.
+
+
+
+[devuser@v103-3-188-202 rbenv]$ sudo fdisk -l
+
+Disk /dev/vda: 214.7 GB, 214748364800 bytes, 419430400 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk label type: dos
+Disk identifier: 0x000a608e
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/vda1   *        2048     1026047      512000   83  Linux
+/dev/vda2         1026048    41943039    20458496   8e  Linux LVM
+/dev/vda3        41943040    42967039      512000   83  Linux
+/dev/vda4        42967040   419430399   188231680    5  Extended
+/dev/vda5        42969088   419430399   188230656   8e  Linux LVM
+
+Disk /dev/mapper/centos-swap: 2147 MB, 2147483648 bytes, 4194304 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/centos-root: 53.7 GB, 53687091200 bytes, 104857600 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/VolGroup-lv_swap: 2113 MB, 2113929216 bytes, 4128768 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/centos-home: 136.8 GB, 136843362304 bytes, 267272192 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/VolGroup-lv_root: 18.8 GB, 18832424960 bytes, 36782080 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/docker-253:1-134511343-pool: 107.4 GB, 107374182400 bytes, 209715200 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 65536 bytes / 65536 bytes
+
+[devuser@v103-3-188-202 rbenv]$
+
+[devuser@v103-3-188-202 rbenv]$ cat /etc/fstab
+
+#
+# /etc/fstab
+# Created by anaconda on Thu Nov 10 19:23:23 2016
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+UUID=ce2985b4-116a-4ba1-b07a-21863a3b07da /boot                   xfs     defaults        0 0
+/dev/mapper/centos-home /home                   xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0
+[devuser@v103-3-188-202 rbenv]$
+
+
+
+> fdisk /dev/mapper/centos-home # ===> seems dangerous, so gave up
+> /sbin/parted /dev/mapper/centos-home # ===> seems dangerous, so gave up
+
+> resize2fs /dev/mapper/centos-home # ===> xfs cannot be resized, so gave up
+> xfs_growfs /dev/mapper/centos-home # ===> xfs_growfs cannot reduce the size, so gave up
+
+# eventually, have to recreate lvm volume.
+# Ref: http://serverfault.com/questions/771921/how-to-shrink-home-and-add-more-space-on-centos7
