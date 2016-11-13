@@ -1,0 +1,18 @@
+[core]
+  editor = vim
+[user]
+	name = Lhacker
+	email = starclown1@gmail.com
+  pager = less -r
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+  st = status
+  co = checkout
+  br = branch
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
