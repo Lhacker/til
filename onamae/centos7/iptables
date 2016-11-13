@@ -10,8 +10,8 @@
 # accept ping/trace etc.
 -A INPUT -p icmp -j ACCEPT
 -A INPUT -i lo -j ACCEPT
-# accept ssh
--A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+# accept
+-A INPUT -m state --state NEW -m multiport -p tcp --dports 22,80,443 -j ACCEPT
 # block massive ssh attack
 -A INPUT -p tcp --syn --dport 22 -m recent --name sshattack --set
 -A INPUT -p tcp --syn --dport 22 -m recent --name sshattack --update --seconds 60 --hitcount 3 -j REJECT
