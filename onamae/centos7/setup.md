@@ -7,13 +7,6 @@ yum install -y bind-utils # will install dig, nslookup, host, nsupdate
 yum install -y iptables iptables-services
 yum install -y perl ruby
 
-systemctl disable firewalld
-systemctl stop firewalld
-systemctl enable iptables
-systemctl restart iptables
-
-# add iptables settings(upload local file by scp)
-
 # add shell settings
 cat <<EOF > /etc/profile.d/alias.sh
 alias rm='rm -i'
@@ -34,13 +27,25 @@ usermod -aG wheel devuser
 
 # could not update ssh port, so ssh is 22
 # add ssh public key at root and devuser
-# update ssh as password = no
+# /etc/ssh/sshd_config
+#   disable root login
+#   update ssh as password = no
 ```
 
 ```sh devuser@server
 # clone git repo
 mkdir -v ~/git; cd ~/git
 git clone https://github.com/Lhacker/til.git
+
+# update git settings
+cp ~/git/til/onamae/.gitconfig ~/
+
+# update iptables settings
+sudo cp -b ~/git/til/onamae/centos7/iptables /etc/sysconfig/iptables
+sudo systemctl disable firewalld
+sudo systemctl stop firewalld
+sudo systemctl enable iptables
+sudo systemctl restart iptables
 
 # install docker
 sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
