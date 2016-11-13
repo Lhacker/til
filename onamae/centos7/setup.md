@@ -2,10 +2,15 @@
 # install packages
 yum update -y; yum clean all
 yum install -y vim git
+yum install -y chrony
 yum install -y telnet wget traceroute tcpdump
 yum install -y bind-utils # will install dig, nslookup, host, nsupdate
 yum install -y iptables iptables-services
 yum install -y perl ruby
+
+# enable systemd
+systemctl enable chronyd
+systemctl start chronyd
 
 # add shell settings
 cat <<EOF > /etc/profile.d/alias.sh
