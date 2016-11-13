@@ -1,4 +1,4 @@
-FROM centos:7_updated
+FROM centos:7_base
 MAINTAINER Lhacker <starclown1@gmail.com>
 
 ARG RUBY_VERSION=${RUBY_VERSION:-2.3.1}
