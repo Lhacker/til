@@ -3,7 +3,7 @@
 yum update -y; yum clean all
 yum install -y vim git
 yum install -y chrony
-yum install -y telnet wget traceroute tcpdump
+yum install -y telnet wget traceroute tcpdump lsof
 yum install -y bind-utils # will install dig, nslookup, host, nsupdate
 yum install -y iptables iptables-services
 yum install -y perl ruby
