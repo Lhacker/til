@@ -7,15 +7,23 @@
 :OUTPUT ACCEPT [0:0]
 # accept already established connection
 -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
-# accept ping/trace etc.
--A INPUT -p icmp -j ACCEPT
--A INPUT -i lo -j ACCEPT
-# accept
--A INPUT -m state --state NEW -m multiport -p tcp --dports 22,80,443 -j ACCEPT
+# drop empty pakcet
+-A INPUT -p tcp --tcp-flags ALL NONE -j DROP
+# drop synflood
+-N drop_synflood
+-A drop_synflood -m limit --limit 10/s --limit-burst 20 -j RETURN
+-A drop_synflood -j LOG --log-prefix "SYNFLOOD: " -m limit --limit 1/s --limit-burst 10
+-A drop_synflood -j DROP
+# drom stealth scan
+-A INPUT -p tcp --tcp-flags ALL ALL -j DROP
 # block massive ssh attack
 -A INPUT -p tcp --syn --dport 22 -m recent --name sshattack --set
 -A INPUT -p tcp --syn --dport 22 -m recent --name sshattack --update --seconds 60 --hitcount 3 -j REJECT
-# reject all input
+# accept
+-A INPUT -i lo -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -m state --state NEW -m multiport -p tcp --dports 22,80,443 -j ACCEPT
+# reject other all input
 -A INPUT -j REJECT --reject-with icmp-host-prohibited
 -A FORWARD -j REJECT --reject-with icmp-host-prohibited
 COMMIT
