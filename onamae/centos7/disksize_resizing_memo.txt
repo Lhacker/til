@@ -85,3 +85,6 @@ UUID=ce2985b4-116a-4ba1-b07a-21863a3b07da /boot                   xfs     defaul
 
 # eventually, have to recreate lvm volume.
 # Ref: http://serverfault.com/questions/771921/how-to-shrink-home-and-add-more-space-on-centos7
+
+# And, I faced that I couldn't ssh by "devuser" after remounting disk.
+# Cause: https://teratail.com/questions/55052
