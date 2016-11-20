@@ -4,8 +4,13 @@ MAINTAINER Lhacker <starclown1@gmail.com>
 ARG ROOT_PASSWORD=${ROOT_PASSWORD:-root}
 
 RUN set -x && \
+: "for man page, comment out 'tsflags=nodocs' option" && \
+  sed -i 's/^tsflags/#tsflags/g' /etc/yum.conf && \
+: "set root password" && \
   echo $ROOT_PASSWORD | passwd root --stdin && \
+: "install items" && \
   yum update -y && yum clean all && \
+  yum install -y man man-pages && \
   yum install -y vim less sudo which && \
   yum install -y telnet wget traceroute tcpdump lsof && \
   yum install -y bind-utils && \
