@@ -5,11 +5,11 @@
     robot.respond(/swing/i, function(res) {
       res.reply('http://livedoor.blogimg.jp/girls002/imgs/f/4/f4af4695.gif');
     });
+    robot.respond(/thanks/i, function(res) {
+      res.reply('http://blog-imgs-92.fc2.com/m/a/n/mangakikou/1461143785189.jpg');
+    });
     robot.respond(/olive\s+oil/i, function(res) {
       res.reply('http://livedoor.blogimg.jp/girls002/imgs/0/c/0c12cf7c.jpg');
-    });
-    robot.hear(/I like pie/i, function(res) {
-      res.send("makes a freshly baked pie");
     });
   
     robot.respond(/df/i, function(res) {
