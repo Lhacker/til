@@ -2,6 +2,11 @@
   const exec = require('child_process').exec;
   
   module.exports = function(robot) {
+    // # Description
+    //     Hello world
+    // 
+    // # Comamnds:
+    //     hubot swing - reply swing gif
     robot.respond(/swing/i, function(res) {
       res.reply('http://livedoor.blogimg.jp/girls002/imgs/f/4/f4af4695.gif');
     });
