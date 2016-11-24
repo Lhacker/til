@@ -1,12 +1,15 @@
+// # Description
+//     Hello world
+// 
+// # Comamnds:
+//     scripts|hubot swing - reply swing gif
+//     scripts|hubot thanks - reply grateful image
+//     scripts|hubot olive oil - reply mokomichi oil pool image
+//     scripts|hubot df - reply current disk info
 (function(module) {
   const exec = require('child_process').exec;
   
   module.exports = function(robot) {
-    // # Description
-    //     Hello world
-    // 
-    // # Comamnds:
-    //     hubot swing - reply swing gif
     robot.respond(/swing/i, function(res) {
       res.reply('http://livedoor.blogimg.jp/girls002/imgs/f/4/f4af4695.gif');
     });
