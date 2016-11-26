@@ -12,4 +12,5 @@ RUN set -x && \
   wget http://www.memcached.org/files/memcached-${MEMCACHED_VERSION}.tar.gz && \
   tar -zxvf memcached-${MEMCACHED_VERSION}.tar.gz && \
   cd memcached-${MEMCACHED_VERSION} && \
-  ./configure && make && make test && make install
+  ./configure && make && make test && make install && \
+  :
