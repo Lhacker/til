@@ -1,0 +1,9 @@
+FROM centos:7_base
+MAINTAINER Lhacker <starclown1@gmail.com>
+
+RUN set -x && \
+: 'setup environment' && \ 
+  yum update -y && yum clean all && \
+: 'install memcached' && \ 
+  yum install -y memcached && \
+  memcached -h | head -n1
