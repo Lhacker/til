@@ -1,7 +1,8 @@
 #!/bin/bash
 
-name=memcached
-image=centos:7_memcached
+NAME=memcached
+MEMCACHED_VERSION=1.4.33
+TAG=centos:7_memcached_${MEMCACHED_VERSION}
 
-docker run -d --privileged --name ${name} ${image} /sbin/init
-docker exec -it ${name} /bin/bash
+docker run -d --privileged --name ${NAME} ${TAG} /sbin/init
+docker exec -it ${NAME} /bin/bash
