@@ -10,7 +10,7 @@ RUN set -x && \
   yum install -y perl which && \
 : 'set nodebrew env' && \
   echo "export NODEBREW_ROOT=${NODEBREW_ROOT}" >> /etc/profile.d/nodejs.sh && \
-  echo "export PATH=${NODEBREW_ROOT}/current/bin:${PATH}" >> /etc/profile.d/nodejs.sh && \
+  echo "export PATH=${NODEBREW_ROOT}/current/lib/node_modules:${NODEBREW_ROOT}/current/bin:\${PATH}" >> /etc/profile.d/nodejs.sh && \
   source /etc/profile.d/nodejs.sh && \
 : 'install node && nodebrew' && \ 
   curl -L git.io/nodebrew | perl - setup && \
