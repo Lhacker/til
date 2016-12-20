@@ -13,23 +13,20 @@ if [ $# -lt 0 ] || [ $# -gt 1 ]; then
 fi
 
 JENKINS_PORT=${1:-8089}
-JENKINS_ROOT=/jenkins
-JENKINS_LOG_PATH=${JENKINS_ROOT}/out.log
-HUBOT_DAEMON_PATH=$HUBOT_DIR/start_hubot_daemon.sh
-HUBOT_LOG_DIR=/var/log/hubot
+JENKINS_HOME=/jenkins
+JENKINS_BIN_DIR=${JENKINS_HOME}/bin
+JENKINS_WAR_PATH=${JENKINS_BIN_DIR}/jenkins.war
+JENKINS_LOG_DIR=${JENKINS_HOME}/log
+JENKINS_OUT_LOG_PATH=${JENKINS_LOG_DIR}/out.log
 
-HOST_SLACK_PORT=$HUBOT_SLACK_PORT
-HOST_SCRIPT_DIR=$SCRIPT_DIR/scripts
-HOST_LOG_DIR=$SCRIPT_DIR/log
+HOST_JENKINS_PORT=${JENKINS_PORT}
+HOST_JENKINS_LOG_DIR=${SCRIPT_DIR}/log
 
 docker run -itd \
-  --name hubot \
-  --hostname hubot \
-  -e HUBOT_SLACK_TOKEN=$HUBOT_SLACK_TOKEN \
-  -e PORT=$HUBOT_SLACK_PORT \
-  -p ${HOST_SLACK_PORT}:${HUBOT_SLACK_PORT} \
-  -v ${HOST_SCRIPT_DIR}:${HUBOT_SCRIPT_DIR} \
-  -v ${HOST_LOG_DIR}:${HUBOT_LOG_DIR} \
-  -w $HUBOT_DIR \
-  centos:7_hubot \
-  bash -c "source /etc/profile; $HUBOT_DAEMON_PATH"
+  --name jenkins_1.651.3 \
+  --hostname jenkins_1.651.3 \
+  -p ${HOST_JENKINS_PORT}:${JENKINS_PORT} \
+  -v ${HOST_JENKINS_LOG_DIR}:${JENKINS_LOG_DIR} \
+  -w ${JENKINS_HOME} \
+  centos:7_jenkins_1.651.3 \
+  bash -c "java -jar ${JENKINS_WAR_PATH} --httpPort=${JENKINS_PORT} --logfile=${JENKINS_OUT_LOG_PATH}"

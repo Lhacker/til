@@ -2,7 +2,9 @@ FROM centos:7_base
 MAINTAINER Lhacker <starclown1@gmail.com>
 
 ARG JENKINS_VERSION=${JENKINS_VERSION:-1.651.3}
-ENV JENKINS_HOME=/jenkins
+ENV JENKINS_HOME /jenkins
+ENV JENKINS_BIN_DIR ${JENKINS_HOME}/bin
+ENV JENKINS_LOG_DIR ${JENKINS_HOME}/log
 
 RUN set -x && \
 : 'setup environment' && \ 
@@ -12,9 +14,11 @@ RUN set -x && \
   wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jdk-8u102-linux-x64.rpm -P /usr/src/redhat/RPMS/ && \
   yum localinstall -y /usr/src/redhat/RPMS/jdk-8u102-linux-x64.rpm && \
 : 'create jenkins root dir' && \
-  mkdir -pv ${JENKINS_HOME}
+  mkdir -pv ${JENKINS_HOME} && \
+  mkdir -pv ${JENKINS_BIN_DIR} && \
+  mkdir -pv ${JENKINS_LOG_DIR}
 
-WORKDIR ${JENKINS_HOME}
+WORKDIR ${JENKINS_BIN_DIR}
 
 RUN set -x && \
 : 'download Jenkins' && \
