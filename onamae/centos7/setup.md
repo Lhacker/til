@@ -8,6 +8,11 @@ yum install -y bind-utils # will install dig, nslookup, host, nsupdate
 yum install -y iptables iptables-services
 yum install -y perl ruby
 
+# enable yum-cron.conf
+yum list installed | grep yum-cron
+vim /etc/yum/yum-cron.conf
+# apply_updates = no ===> apply_updates = yes
+
 # enable systemd
 systemctl enable chronyd
 systemctl start chronyd
