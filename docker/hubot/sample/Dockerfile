@@ -7,7 +7,6 @@ ARG HUBOT_CONVERSATION_PLUGIN=${HUBOT_CONVERSATION_PLUGIN:-}
 
 # install hubot
 RUN set -x && \
-  source /etc/profile && \
   mkdir -pv $HUBOT_LOG_DIR && \
   mkdir -pv $HUBOT_DIR && \
   cd $HUBOT_DIR && \
