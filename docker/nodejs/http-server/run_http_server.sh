@@ -23,5 +23,4 @@ docker run -itd \
   --hostname http-server \
   -v "${HOST_WEB_ROOT}:${WEB_ROOT}" \
   -p "${HOST_PORT}:${PORT}" \
-  centos:7_http-server \
-  tail -f /dev/null
+  centos:7_http-server
