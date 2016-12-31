@@ -8,6 +8,13 @@ ARG HAPI_SCRIPT_DIR=${HAPI_ROOT}/routes
 RUN set -x && \
 : 'setup environment' && \ 
   yum update -y && yum clean all && \
-  mkdir ${HAPI_ROOT} && \
+  mkdir -pv ${HAPI_ROOT} && \
+  mkdir -pv ${HAPI_SCRIPT_DIR}
+
+COPY package.json ${HAPI_ROOT}/
+COPY server.js ${HAPI_ROOT}/
+WORKDIR ${HAPI_ROOT}
+
+RUN set -x && \
 : 'install hapi' && \ 
   npm install hapi@${HAPI_VERSION} --save
