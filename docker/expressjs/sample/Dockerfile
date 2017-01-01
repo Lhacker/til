@@ -19,6 +19,8 @@ RUN set -x && \
   npm install -g express-generator@${EXPRESS_VERSION} && \
   express -v ${EXPRESS_VIEW_OPTION} ${EXPRESS_APP_NAME} && \
   cd ${EXPRESS_APP_DIR} && \
+  sed -i 's/^  }$/  },/g' package.json && \
+  sed -i '/^}$/i\  "license": "MIT"/' package.json && \
   npm install
 
 CMD ["npm", "start"]
