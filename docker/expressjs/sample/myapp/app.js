@@ -16,7 +16,17 @@ app.set('view engine', 'vash');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(
+  logger('combined', {
+    skip: function(req, res) {
+      if (res["req"]["url"].indexOf('stylesheets') > -1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  })
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
