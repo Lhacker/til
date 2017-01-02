@@ -22,6 +22,7 @@ docker run -itd \
   -v "${HOST_EXPRESS_APP_DIR}/bin:${EXPRESS_APP_DIR}/bin" \
   -v "${HOST_EXPRESS_APP_DIR}/public:${EXPRESS_APP_DIR}/public" \
   -v "${HOST_EXPRESS_APP_DIR}/routes:${EXPRESS_APP_DIR}/routes" \
+  -v "${HOST_EXPRESS_APP_DIR}/sslcert:${EXPRESS_APP_DIR}/sslcert" \
   -v "${HOST_EXPRESS_APP_DIR}/views:${EXPRESS_APP_DIR}/views" \
   -p "80:80" \
   -p "443:443" \
