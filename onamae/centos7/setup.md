@@ -9,6 +9,8 @@ yum install -y bind-utils # will install dig, nslookup, host, nsupdate
 yum install -y iptables iptables-services
 yum install -y perl ruby
 yum install -y sysstat # for installing sar && iostat command
+yum install -y tree
+yum install -y tmux
 
 # enable yum-cron.conf
 yum list installed | grep yum-cron
