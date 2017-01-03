@@ -19,7 +19,10 @@ app.set('view engine', 'vash');
 app.use(
   logger('combined', {
     skip: function(req, res) {
-      if (res["req"]["url"].indexOf('stylesheets') > -1) {
+      var requestUrl = res["req"]["url"];
+      if (requestUrl.indexOf('stylesheets') > -1) {
+        return true;
+      } else if (requestUrl.indexOf('images') > -1) {
         return true;
       } else {
         return false;
