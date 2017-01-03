@@ -7,6 +7,7 @@ function usage() {
   echo "Ex."
   echo "  $0 --dry-run"
   echo "  $0"
+  exit 1
 }
 
 function execute_letsencrypt_docker() {
@@ -37,7 +38,6 @@ function execute_main() {
         ;;
       -h|--help|*)
         usage
-        exit 1
         ;;
     esac
   done

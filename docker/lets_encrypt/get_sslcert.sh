@@ -4,6 +4,7 @@ SCRIPT_DIR=$(cd $(dirname $0); pwd)
 function usage() {
   echo "Usage: $0 [domain] [email]"
   echo "  $0 example.com webmaster@example.com"
+  exit 1
 }
 
 domain=$1
