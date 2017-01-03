@@ -1,0 +1,13 @@
+{
+  'reply': {
+    'postOption': {
+      'hostname': 'api.line.me',
+      'port': '443',
+      'path': '/web/authenticate',
+      'method': 'POST',
+      'headers': {
+        'Content-Type': 'application/json'
+      }
+    }
+  }
+}
