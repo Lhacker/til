@@ -2,8 +2,11 @@
 
   const https = require('https');
   const replyApiConfig = require('./reply-api-config.json');
+  replyApiConfig.postOption.headers.Authorization =
+    replyApiConfig.postOption.headers.Authorization
+      .replace('{CHANNEL_ACCESS_TOKEN}', process.env.LINE_API_CHANNEL_ACCESS_TOKEN);
 
-  var replyAPI = function(requestData) {
+  const replyAPI = function(requestData) {
     this.events = requestData.events;
     this.message = this.events[0].message;
     this.text = this.message.text;
@@ -15,7 +18,7 @@
   }
 
   replyAPI.prototype.sendReplyAsync = function(messages) {
-    var postRequest = https.request(replyApiConfig.postOption, function(res) {
+    const postRequest = https.request(replyApiConfig.postOption, function(res) {
       var strSentData = '';
       res.setEncoding('utf8');
       res.on('data', function(chunk) { strSentData += chunk; });
@@ -26,12 +29,11 @@
       console.log(error);
     });
 
-    var sendData = {
+    const sendData = {
       replyToken: this.replyToken,
       messages: messages
     };
-    var strSendData = JSON.stringify(sendData)
-      .replace('{CHANNEL_ACCESS_TOKEN}', process.env.LINE_API_CHANNEL_ACCESS_TOKEN);
+    const strSendData = JSON.stringify(sendData);
     postRequest.write(strSendData);
     postRequest.end();
   };
