@@ -25,7 +25,9 @@ module.exports = function(router) {
     } catch(e) {
       console.log('Requested data : ' + JSON.stringify(req.body));
       console.log(e);
+      res.sendStatus(500);
     }
   });
+
   return router;
 };
