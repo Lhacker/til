@@ -22,7 +22,7 @@
       var strSentData = '';
       res.setEncoding('utf8');
       res.on('data', function(chunk) { strSentData += chunk; });
-      res.on('end', function() { console.log('Post data : ' + strSentData); });
+      res.on('end', function() { console.log('Posted data : ' + strSentData); });
     });
 
     postRequest.on('error', function(error) {

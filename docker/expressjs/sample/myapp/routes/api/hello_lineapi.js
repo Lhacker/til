@@ -7,7 +7,6 @@ module.exports = function(router) {
 
   router.post('/hello_lineapi', function(req, res, next) {
     try {
-      console.log(require('util').inspect(req.body));
       var lineReplyAPI = new LineReplyAPI(req.body);
 
       // make messages
@@ -19,13 +18,12 @@ module.exports = function(router) {
         }
       ];
 
-      console.log('before send messages to line reply api');
       // reply by reply API
       lineReplyAPI.sendReplyAsync(messages);
-      console.log('after send messages to line reply api');
 
       res.sendStatus(200);
     } catch(e) {
+      console.log('Requested data : ' + JSON.stringify(req.body));
       console.log(e);
     }
   });
