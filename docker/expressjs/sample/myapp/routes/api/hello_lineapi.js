@@ -6,21 +6,28 @@ module.exports = function(router) {
   });
 
   router.post('/hello_lineapi', function(req, res, next) {
-    var lineReplyAPI = new LineReplyAPI(req.params);
+    try {
+      console.log(require('util').inspect(req.body));
+      var lineReplyAPI = new LineReplyAPI(req.body);
 
-    // make data
-    // temporarily, will send same message
-    var data = [
-      {
-        "type": "text",
-        "text": lineReplyAPI.getReceivedText()
-      }
-    ];
+      // make messages
+      // temporarily, will send same message
+      var messages = [
+        {
+          "type": "text",
+          "text": lineReplyAPI.getReceivedText()
+        }
+      ];
 
-    // reply by reply API
-    lineReplyAPI.sendReplyAsync(data);
+      console.log('before send messages to line reply api');
+      // reply by reply API
+      lineReplyAPI.sendReplyAsync(messages);
+      console.log('after send messages to line reply api');
 
-    next();
+      res.sendStatus(200);
+    } catch(e) {
+      console.log(e);
+    }
   });
   return router;
 };
