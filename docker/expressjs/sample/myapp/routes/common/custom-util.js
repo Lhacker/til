@@ -2,7 +2,7 @@
 
   var util = require('util');
 
-  util.prototype.clone = function(o) {
+  util.clone = function(o) {
     return JSON.parse(JSON.stringify(o));
   };
 
