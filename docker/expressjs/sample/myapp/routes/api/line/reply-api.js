@@ -1,28 +1,20 @@
 (function(module) {
 
   const https = require('https');
-  const replyApiConfig = require('./reply-api-config.json');
-  replyApiConfig.postOption.headers.Authorization =
-    replyApiConfig.postOption.headers.Authorization
-      .replace('{CHANNEL_ACCESS_TOKEN}', process.env.LINE_API_CHANNEL_ACCESS_TOKEN);
+  const customUtil = require('../../common/custom-util.js');
+  const replyApiConfigTemplate = require('./reply-api-config.json');
 
-  const replyAPI = function(requestData) {
-    this.events = requestData.events;
-    this.message = this.events[0].message;
-    this.text = this.message.text;
-    this.replyToken = this.events[0].replyToken;
+  const replyAPI = function(channelAccessToken) {
+    this.channelAccessToken = channelAccessToken;
+    this.replyApiConfig = customUtil.clone(replyApiConfigTemplate);
+    this.replyApiConfig.postOption.headers.Authorization =
+      this.replyApiConfig.postOption.headers.Authorization.replace('{CHANNEL_ACCESS_TOKEN}', channelAccessToken);
   };
 
-  replyAPI.prototype.getReceivedText = function() {
-    return this.text;
-  }
-
-  replyAPI.prototype.sendReplyAsync = function(messages) {
-    const postRequest = https.request(replyApiConfig.postOption, function(res) {
-      var strSentData = '';
+  replyAPI.prototype.sendReplyAsync = function(replyToken, messages) {
+    const postRequest = https.request(this.replyApiConfig.postOption, function(res) {
       res.setEncoding('utf8');
-      res.on('data', function(chunk) { strSentData += chunk; });
-      res.on('end', function() { console.log('Posted data : ' + strSentData); });
+      res.on('data', function(chunk) { console.log('Posting chunk to LINE Reply API : ' + chunk; });
     });
 
     postRequest.on('error', function(error) {
@@ -30,11 +22,10 @@
     });
 
     const sendData = {
-      replyToken: this.replyToken,
+      replyToken: replyToken,
       messages: messages
     };
-    const strSendData = JSON.stringify(sendData);
-    postRequest.write(strSendData);
+    postRequest.write(JSON.stringify(sendData));
     postRequest.end();
   };
 
