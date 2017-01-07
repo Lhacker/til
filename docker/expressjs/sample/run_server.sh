@@ -16,8 +16,8 @@ EXPRESS_APP_DIR=${EXPRESS_ROOT}/${EXPRESS_APP_NAME}
 HOST_EXPRESS_APP_DIR=${SCRIPT_DIR}/${EXPRESS_APP_NAME}
 
 docker run -itd \
-  --name expressjs_server \
-  --hostname expressjs_server \
+  --name expressjs-dev \
+  --hostname expressjs-dev \
   -v "${HOST_EXPRESS_APP_DIR}/app.js:${EXPRESS_APP_DIR}/app.js" \
   -v "${HOST_EXPRESS_APP_DIR}/bin:${EXPRESS_APP_DIR}/bin" \
   -v "${HOST_EXPRESS_APP_DIR}/public:${EXPRESS_APP_DIR}/public" \
@@ -26,4 +26,4 @@ docker run -itd \
   -v "${HOST_EXPRESS_APP_DIR}/views:${EXPRESS_APP_DIR}/views" \
   -p "80:80" \
   -p "443:443" \
-  centos:7_expressjs_${EXPRESS_VERSION}
+  centos7-expressjs:${EXPRESS_VERSION}

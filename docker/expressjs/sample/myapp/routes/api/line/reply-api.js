@@ -14,7 +14,7 @@
   replyAPI.prototype.sendReplyAsync = function(replyToken, messages) {
     const postRequest = https.request(this.replyApiConfig.postOption, function(res) {
       res.setEncoding('utf8');
-      res.on('data', function(chunk) { console.log('Posting chunk to LINE Reply API : ' + chunk; });
+      res.on('data', function(chunk) { console.log('Posting chunk to LINE Reply API : ' + chunk); });
     });
 
     postRequest.on('error', function(error) {

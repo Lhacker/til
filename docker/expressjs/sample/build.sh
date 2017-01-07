@@ -6,4 +6,4 @@ docker build --force-rm --no-cache \
   --build-arg EXPRESS_VIEW_OPTION=vash \
   --build-arg EXPRESS_ROOT=/express_root \
   --build-arg EXPRESS_APP_NAME=myapp \
-  -t centos:7_expressjs_${EXPRESS_VERSION} ${SCRIPT_DIR}
+  -t centos7-expressjs:${EXPRESS_VERSION} ${SCRIPT_DIR}

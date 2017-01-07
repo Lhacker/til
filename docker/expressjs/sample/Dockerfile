@@ -1,4 +1,4 @@
-FROM centos:7_nodejs_v7.0.0
+FROM centos7-nodejs:v7.0.0
 MAINTAINER Lhacker <starclown1@gmail.com>
 
 ARG EXPRESS_VERSION=${EXPRESS_VERSION:-latest}

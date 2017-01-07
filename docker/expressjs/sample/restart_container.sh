@@ -8,6 +8,6 @@ function usage() {
   exit 1
 }
 
-CONTAINER_NAME=expressjs_server
+CONTAINER_NAME=expressjs-dev
 docker stop ${CONTAINER_NAME}
 docker start ${CONTAINER_NAME}
