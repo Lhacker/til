@@ -8,7 +8,7 @@ ENV JENKINS_BIN_DIR ${JENKINS_ROOT}/bin
 ENV JENKINS_LOG_DIR ${JENKINS_ROOT}/log
 
 RUN set -x && \
-: 'setup environment' && \ 
+: 'setup environment' && \
   yum update -y && yum clean all && \
 : 'install java' && \
   mkdir -pv /usr/src/redhat/RPMS/ && \

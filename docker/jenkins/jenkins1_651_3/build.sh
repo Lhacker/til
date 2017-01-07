@@ -1,3 +1,5 @@
 #!/bin/bash
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
-docker build --force-rm --no-cache --build-arg JENKINS_VERSION=1.651.3 -t centos:7_jenkins_1.651.3 $SCRIPT_DIR
+JENKINS_VERSION=${1:-1.651.3}
+
+docker build --force-rm --no-cache --build-arg JENKINS_VERSION=${JENKINS_VERSION} -t centos7-jenkins:${JENKINS_VERSION} ${SCRIPT_DIR}

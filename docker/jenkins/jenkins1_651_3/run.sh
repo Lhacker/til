@@ -13,6 +13,7 @@ if [ $# -lt 0 ] || [ $# -gt 1 ]; then
 fi
 
 JENKINS_PORT=${1:-8089}
+JENKINS_VERSION=1.651.3
 JENKINS_ROOT=/jenkins
 JENKINS_HOME=${JENKINS_ROOT}/data
 JENKINS_BIN_DIR=${JENKINS_ROOT}/bin
@@ -29,11 +30,15 @@ mkdir -p ${HOST_JENKINS_LOG_DIR}
 sudo rm -f ${HOST_JENKINS_LOG_DIR}/*
 
 docker run -itd \
-  --name jenkins_1.651.3 \
-  --hostname jenkins_1.651.3 \
+  --name jenkins${JENKINS_VERSION%%.*}x \
+  --hostname jenkins${JENKINS_VERSION%%.*}x \
   -p ${HOST_JENKINS_PORT}:${JENKINS_PORT} \
   -v ${HOST_JENKINS_LOG_DIR}:${JENKINS_LOG_DIR} \
   -v ${HOST_JENKINS_HOME}:${JENKINS_HOME} \
   -w ${JENKINS_HOME} \
-  centos:7_jenkins_1.651.3 \
-  bash -c "java -jar ${JENKINS_WAR_PATH} --httpPort=${JENKINS_PORT} --accessLoggerClassName=winstone.accesslog.SimpleAccessLogger --simpleAccessLogger.format=common --simpleAccessLogger.file=${JENKINS_ACCESS_LOG_PATH}"
+  centos7-jenkins:${JENKINS_VERSION} \
+  bash -c "java -jar ${JENKINS_WAR_PATH} \
+    --httpPort=${JENKINS_PORT} \
+    --accessLoggerClassName=winstone.accesslog.SimpleAccessLogger \
+    --simpleAccessLogger.format=common \
+    --simpleAccessLogger.file=${JENKINS_ACCESS_LOG_PATH}"
