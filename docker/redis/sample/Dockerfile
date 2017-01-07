@@ -1,4 +1,4 @@
-FROM centos:7_base
+FROM centos-base:7
 MAINTAINER Lhacker <starclown1@gmail.com>
 
 ARG REDIS_VERSION=${REDIS_VERSION:-3.2.5}

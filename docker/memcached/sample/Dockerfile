@@ -1,4 +1,4 @@
-FROM centos:7_base
+FROM centos-base:7
 MAINTAINER Lhacker <starclown1@gmail.com>
 
 ARG MEMCACHED_VERSION=${MEMCACHED_VERSION:-1.4.33}

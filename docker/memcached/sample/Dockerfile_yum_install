@@ -1,4 +1,4 @@
-FROM centos:7_base
+FROM centos-base:7
 MAINTAINER Lhacker <starclown1@gmail.com>
 
 RUN set -x && \

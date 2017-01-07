@@ -1,4 +1,4 @@
-FROM centos:7_base
+FROM centos-base:7
 MAINTAINER Lhacker <starclown1@gmail.com>
 
 ARG JENKINS_VERSION=${JENKINS_VERSION:-1.651.3}
