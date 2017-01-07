@@ -17,6 +17,10 @@ RUN set -x && \
     libxml2-dev \
     libxslt1-dev \
     libyaml-dev \
+    openssl \
+    openssl-devel \
+    zlib \
+    zlib-devel \
     zlib1g-dev && \
 : install ruby && \
   curl -O http://ftp.ruby-lang.org/pub/ruby/${RUBY_VERSION%.*}/ruby-${RUBY_VERSION}.tar.gz && \
@@ -26,7 +30,7 @@ RUN set -x && \
   make && \
   make install && \
   cd .. && \
-  rm -r ruby-${RUBY_VERSION}.tar.gz && \
+  rm -r ruby-${RUBY_VERSION} ruby-${RUBY_VERSION}.tar.gz && \
   echo 'gem: --no-document' > /usr/local/etc/gemrc && \
 : install bundler && \
   gem install bundler
