@@ -1,2 +1,5 @@
 #!/bin/bash
-docker build --force-rm --no-cache --build-arg RUBY_VERSION=2.3.1 -t centos:7_rbenv_2.3.1 .
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+RUBY_VERSION=${1:-2.3.1}
+
+docker build --force-rm --no-cache --build-arg RUBY_VERSION=${RUBY_VERSION} -t centos7-ruby-rbenv:${RUBY_VERSION} ${SCRIPT_DIR}
