@@ -7,7 +7,7 @@ RUN set -x && \
 : "for man page, comment out 'tsflags=nodocs' option" && \
   sed -i 's/^tsflags/#tsflags/g' /etc/yum.conf && \
 : "set root password" && \
-  echo $ROOT_PASSWORD | passwd root --stdin && \
+  echo ${ROOT_PASSWORD} | passwd root --stdin && \
 : "install items" && \
   yum update -y && yum clean all && \
   yum install -y man man-pages && \
