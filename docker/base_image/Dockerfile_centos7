@@ -3,7 +3,11 @@ MAINTAINER Lhacker <starclown1@gmail.com>
 
 ARG ROOT_PASSWORD=${ROOT_PASSWORD:-root}
 
+ENV TZ Asia/Tokyo
+
 RUN set -x && \
+: "set default timezone as japan tokyo" && \
+  ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
 : "for man page, comment out 'tsflags=nodocs' option" && \
   sed -i 's/^tsflags/#tsflags/g' /etc/yum.conf && \
 : "set root password" && \
