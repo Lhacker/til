@@ -1,4 +1,4 @@
-FROM centos:7_nodejs_v7.0.0
+FROM centos7-nodejs:v7.0.0
 MAINTAINER Lhacker <starclown1@gmail.com>
 
 ARG PORT=${PORT:-80}
@@ -9,7 +9,7 @@ ENV WEB_ROOT ${WEB_ROOT}
 ENV PORT ${PORT}
 
 RUN set -x && \
-: 'setup environment' && \ 
+: 'setup environment' && \
   yum update -y && yum clean all && \
   mkdir -pv ${WEB_ROOT} && \
   mkdir -pv ${WEB_JS_DIR} && \
