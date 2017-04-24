@@ -1,0 +1,28 @@
+FROM centos-base:7
+MAINTAINER Lhacker <starclown1@gmail.com>
+
+ARG APACHE_VERSION=${APACHE_VERSION:-2.4.25}
+ARG APR_VERSION=${APR_VERSION:-1.5.2}
+ARG APR_UTIL_VERSION=${APR_UTIL_VERSION:-1.5.4}
+ARG PCRE_VERSION=${PCRE_VERSION:-10.22}
+ARG APACHE_PREFIX_DIR=${APACHE_PREFIX_DIR:-/usr/local/apache}
+
+RUN set -x && \
+: 'setup environment' && \
+  yum update -y && yum clean all && \
+  yum install -y apr apr-util && \
+: 'download apache' && \
+  mkdir -pv /usr/local/src/httpd-${APACHE_VERSION} && \
+  mkdir -pv /usr/local/src/apr-${APR_VERSION} && \
+  mkdir -pv /usr/local/src/apr-util-${APR_UTIL_VERSION} && \
+  mkdir -pv /usr/local/src/apr-util-${APR_UTIL_VERSION} && \
+  cd /usr/local/src/httpd-${APACHE_VERSION} && \
+  curl -O http://ftp.jaist.ac.jp/pub/apache//httpd/httpd-${APACHE_VERSION}.tar.gz && \
+  (gzip -d httpd-${APACHE_VERSION}.tar.gz | tar xvf httpd-${APACHE_VERSION}.tar) && \
+  rm -rf httpd-${APACHE_VERSION}.tar.gz && \
+  cd httpd-${APACHE_VERSION} && \
+: 'build' && \
+  ./configure --prefix ${APACHE_PREFIX_DIR} && \
+  make && \
+  make install && \
+  :
