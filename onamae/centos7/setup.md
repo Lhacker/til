@@ -90,3 +90,20 @@ docker pull ubuntu:16.10
 docker pull alpine:3.4
 ~/git/til/docker/base_image/build_centos7.sh
 ```
+
+```sh root@server
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=http://yum.kubernetes.io/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+       https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+setenforce 0
+yum install -y kubelet kubeadm kubectl kubernetes-cni
+systemctl enable kubelet && systemctl start kubelet
+setenforce 1
+```
