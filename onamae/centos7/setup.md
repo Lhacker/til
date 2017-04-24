@@ -81,6 +81,11 @@ if [ -z `sudo grep docker /etc/group` ]; then sudo groupadd docker; fi
 sudo usermod -aG docker root
 sudo usermod -aG docker devuser
 # re-login by devuser
+
+# install docker compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
 ```
 
 ```sh devuser@server
