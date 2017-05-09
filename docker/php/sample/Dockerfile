@@ -2,7 +2,7 @@ FROM centos-base:7
 MAINTAINER Lhacker <starclown1@gmail.com>
 
 ARG PHP_VERSION=${PHP_VERSION}
-ENV PATH ~/.phpbrew/bashrc:${PATH}
+ENV PATH ~/.composer/vendor/bin:~/.phpbrew/bashrc:${PATH}
 
 # setup environment
 RUN set -x && \
