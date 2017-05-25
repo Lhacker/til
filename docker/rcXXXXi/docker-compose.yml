@@ -1,0 +1,35 @@
+version: '2.0'
+services:
+  app:
+    build:
+      context: ./dockerfile/app
+      args:
+        EXPRESS_VERSION: ${EXPRESS_VERSION}
+        EXPRESS_ROOT: ${EXPRESS_ROOT}
+        EXPRESS_APP_NAME: ${EXPRESS_APP_NAME}
+    image: rcXXXXi/centos7-app:${RCXXXXI_IMAGE_TAG}
+    container_name: rcXXXXi-app
+    links:
+      - database
+    ports:
+      - "19443:443"
+    environment:
+      - HOGE=${NODE_ENV}
+    env_file:
+      - secret.env
+    volumes:
+      - ./${EXPRESS_APP_NAME}/app.js:${EXPRESS_ROOT}/${EXPRESS_APP_NAME}/app.js
+      - ./${EXPRESS_APP_NAME}/bin:${EXPRESS_ROOT}/${EXPRESS_APP_NAME}/bin
+      - ./${EXPRESS_APP_NAME}/public:${EXPRESS_ROOT}/${EXPRESS_APP_NAME}/public
+      - ./${EXPRESS_APP_NAME}/routes:${EXPRESS_ROOT}/${EXPRESS_APP_NAME}/routes
+      - ./${EXPRESS_APP_NAME}/sslcert:${EXPRESS_ROOT}/${EXPRESS_APP_NAME}/sslcert
+      - ./${EXPRESS_APP_NAME}/views:${EXPRESS_ROOT}/${EXPRESS_APP_NAME}/views
+    command: npm start
+  database:
+    build:
+      context: ./dockerfile/mysql
+      args:
+        REDIS_VERSION: 3.2.6
+    image: rcXXXXi/centos7-mysql:master
+    container_name: line-api-hook-redis
+    command: redis-server /etc/redis/redis.conf
