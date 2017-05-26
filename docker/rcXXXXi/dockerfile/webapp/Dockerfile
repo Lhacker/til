@@ -4,6 +4,7 @@ MAINTAINER Lhacker <starclown1@gmail.com>
 ARG APP_ROOT=${APP_DIR:-/root}
 ARG APP_NAME=rcXXXXi
 ARG APP_DIR=${APP_ROOT}/${APP_NAME}
+ARG APACHE_CONF_DIR=/etc/httpd/conf
 
 RUN set -x && \
 : 'setup environment' && \
@@ -15,14 +16,15 @@ RUN set -x && \
   laravel new --no-plugins --no-scripts ${APP_NAME} && \
 :
 
-COPY composer.json ${APP_DIR}
+# prepare Application setting files
+COPY composer.json ${APP_DIR}/
+COPY http-vost.conf ${APACHE_CONF_DIR}/conf.d/
 WORKDIR ${APP_DIR}
 
 RUN set -x && \
 : 'install php packages' && \
   composer update && \
+  php artisan key:generate && \
 : 'setup apache settings' && \
-  aaa && \
+  : 'Nothing to do for now' && \
 :
-
-CMD ["npm", "start"]
