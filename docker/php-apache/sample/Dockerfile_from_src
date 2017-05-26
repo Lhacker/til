@@ -1,0 +1,21 @@
+FROM centos7-php:5.6.30
+MAINTAINER Lhacker <starclown1@gmail.com>
+
+RUN set -x && \
+: 'setup environment' && \
+  yum update -y && yum clean all && \
+: 'install apache' && \
+  curl -O http://www-us.apache.org/dist/httpd/httpd-2.4.25.tar.gz && \
+  curl -O http://www-us.apache.org/dist/apr/apr-1.5.2.tar.gz && \
+  curl -O http://www-us.apache.org/dist/apr/apr-util-1.5.4.tar.gz && \
+  tar zxvf httpd-2.4.25.tar.gz && \
+  tar zxvf apr-1.5.2.tar.gz && \
+  tar zxvf apr-util-1.5.4.tar.gz && \
+  rm httpd-2.4.25.tar.gz apr-1.5.2.tar.gz apr-util-1.5.4.tar.gz && \
+  mv -v apr-1.5.2 httpd-2.4.25/srclib/apr && \
+  mv -v apr-util-1.5.4 httpd-2.4.25/srclib/apr-util && \
+  cd httpd-2.4.25 && \
+  ./configure --prefix=/usr/local/apache-2.4.23 --with-included-apr && \
+  make && \
+  make install && \
+:
