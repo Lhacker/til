@@ -1,26 +1,27 @@
-version: '2.0'
+version: '3.0'
 services:
   webapp:
     build:
       context: ./dockerfile/webapp
-      args:
     image: rcxxxxi/centos7-webapp:${RCXXXXI_IMAGE_TAG}
     container_name: rcxxxxi-webapp
     hostname: rcxxxxi-webapp
     privileged: true
     links:
-      - rcxxxxi-database
+      - database
     ports:
       - "19080:80"
       - "19443:443"
-    environment:
     env_file:
-      - secret.env
+      - .env
     volumes:
       - ./webapp/:${APP_ROOT}/${APP_NAME}/
   database:
     build:
-      context: ./dockerfile/database
-      args:
+      context: ./dockerfile/mysql
     image: rcxxxxi/centos7-mysql:${RCXXXXI_IMAGE_TAG}
+    hostname: rcxxxxi-database
+    privileged: true
+    env_file:
+      - .env
     container_name: rcxxxxi-database
