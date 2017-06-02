@@ -1,24 +1,16 @@
-FROM centos-base:7
+FROM mysql:5.7
 MAINTAINER Lhacker <starclown1@gmail.com>
 
-ARG REDIS_VERSION=${REDIS_VERSION:-3.2.6}
-ARG REDIS_CONF_DIR=/etc/redis
+ARG ROOT_USER_PASSWORD=${ROOT_USER_PASSWORD:-root}
+ARG NEW_USER_NAME=rcawaii
+ARG NEW_USER_HOST=localhost
+ARG NEW_USER_PASSWORD=rcawaii
 
 RUN set -x && \
 : 'setup environment' && \
-  yum update -y && yum clean all && \
-: 'install redis' && \
-  cd /usr/local/src && \
-  curl -O http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz && \
-  tar -zxvf redis-${REDIS_VERSION}.tar.gz && \
-  cd redis-${REDIS_VERSION} && \
-  make && \
-  make install && \
-  cd .. && \
-  rm -rf ./redis-${REDIS_VERSION}.tar.gz && \
-  mkdir -v ${REDIS_CONF_DIR} && \
+  : && \
+: 'create user' && \
+  mysql -uroot -p${ROOT_USER_PASSWORD} -e "create user '${NEW_USER_NAME}'@'${NEW_USER_HOST}' identified by '${NEW_USER_PASSWORD}'" && \
+: 'grant permissions to the user' && \
+  mysql -uroot -p${ROOT_USER_PASSWORD} -e "grant all privileges on rcawaii_local.* to '${NEW_USER_NAME}'@'${NEW_USER_HOST}'; flush privileges" && \
   :
-
-COPY redis.conf ${REDIS_CONF_DIR}/
-
-CMD redis-server ${REDIS_CONF_DIR}/redis.conf
