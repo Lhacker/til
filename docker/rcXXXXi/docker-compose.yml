@@ -1,35 +1,26 @@
 version: '2.0'
 services:
-  app:
+  webapp:
     build:
-      context: ./dockerfile/app
+      context: ./dockerfile/webapp
       args:
-        EXPRESS_VERSION: ${EXPRESS_VERSION}
-        EXPRESS_ROOT: ${EXPRESS_ROOT}
-        EXPRESS_APP_NAME: ${EXPRESS_APP_NAME}
-    image: rcXXXXi/centos7-app:${RCXXXXI_IMAGE_TAG}
-    container_name: rcXXXXi-app
+    image: rcxxxxi/centos7-webapp:${RCXXXXI_IMAGE_TAG}
+    container_name: rcxxxxi-webapp
+    hostname: rcxxxxi-webapp
+    privileged: true
     links:
-      - database
+      - rcxxxxi-database
     ports:
+      - "19080:80"
       - "19443:443"
     environment:
-      - HOGE=${NODE_ENV}
     env_file:
       - secret.env
     volumes:
-      - ./${EXPRESS_APP_NAME}/app.js:${EXPRESS_ROOT}/${EXPRESS_APP_NAME}/app.js
-      - ./${EXPRESS_APP_NAME}/bin:${EXPRESS_ROOT}/${EXPRESS_APP_NAME}/bin
-      - ./${EXPRESS_APP_NAME}/public:${EXPRESS_ROOT}/${EXPRESS_APP_NAME}/public
-      - ./${EXPRESS_APP_NAME}/routes:${EXPRESS_ROOT}/${EXPRESS_APP_NAME}/routes
-      - ./${EXPRESS_APP_NAME}/sslcert:${EXPRESS_ROOT}/${EXPRESS_APP_NAME}/sslcert
-      - ./${EXPRESS_APP_NAME}/views:${EXPRESS_ROOT}/${EXPRESS_APP_NAME}/views
-    command: npm start
+      - ./webapp/:${APP_ROOT}/${APP_NAME}/
   database:
     build:
-      context: ./dockerfile/mysql
+      context: ./dockerfile/database
       args:
-        REDIS_VERSION: 3.2.6
-    image: rcXXXXi/centos7-mysql:master
-    container_name: line-api-hook-redis
-    command: redis-server /etc/redis/redis.conf
+    image: rcxxxxi/centos7-mysql:${RCXXXXI_IMAGE_TAG}
+    container_name: rcxxxxi-database
