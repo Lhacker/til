@@ -1,25 +1,25 @@
 FROM centos7-php-apache:dev
 MAINTAINER Lhacker <starclown1@gmail.com>
 
-ARG APP_ROOT=${APP_DIR:-/root}
-ARG APP_NAME=rcXXXXi
-ARG APP_DIR=${APP_ROOT}/${APP_NAME}
+ARG WEBAPP_ROOT=${WEBAPP_ROOT:-/root}
+ARG WEBAPP_NAME=rcxxxxi}
+ARG WEBAPP_DIR=${WEBAPP_ROOT}/${WEBAPP_NAME}
 ARG APACHE_CONF_DIR=/etc/httpd/conf
 
 RUN set -x && \
 : 'setup environment' && \
   yum update -y && yum clean all && \
-  mkdir -pv ${APP_ROOT} && \
-  cd ${APP_ROOT} && \
+  mkdir -pv ${WEBAPP_ROOT} && \
+  cd ${WEBAPP_ROOT} && \
 : 'install laravel' && \
   composer --no-plugins --no-scripts global require 'laravel/installer' && \
-  laravel new --no-plugins --no-scripts ${APP_NAME} && \
+  laravel new --no-plugins --no-scripts ${WEBAPP_NAME} && \
 :
 
 # prepare Application setting files
-COPY composer.json ${APP_DIR}/
+COPY composer.json ${WEBAPP_DIR}/
 COPY http-vost.conf ${APACHE_CONF_DIR}/conf.d/
-WORKDIR ${APP_DIR}
+WORKDIR ${WEBAPP_DIR}
 
 RUN set -x && \
 : 'install php packages' && \

@@ -11,7 +11,7 @@ RUN set -x && \
   : && \
 : 'start mysqld for running sql' && \
   mysqld_safe && \
-  sleep 10 && \
+  sleep 30 && \
 : 'create user' && \
   mysql -uroot -p${ROOT_USER_PASSWORD} -e "create user '${NEW_USER_NAME}'@'${NEW_USER_HOST}' identified by '${NEW_USER_PASSWORD}'" && \
 : 'grant permissions to the user' && \

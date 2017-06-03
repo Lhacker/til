@@ -15,11 +15,11 @@ services:
     env_file:
       - .env
     volumes:
-      - ./webapp/:${APP_ROOT}/${APP_NAME}/
+      - ./webapp/:${WEBAPP_ROOT}/${WEBAPP_NAME}/
   database:
     build:
       context: ./dockerfile/mysql
-    image: rcxxxxi/centos7-mysql:${RCXXXXI_IMAGE_TAG}
+    image: rcxxxxi/mysql:${RCXXXXI_IMAGE_TAG}
     hostname: rcxxxxi-database
     privileged: true
     env_file:
