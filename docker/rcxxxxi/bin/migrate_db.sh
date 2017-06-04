@@ -1,15 +1,27 @@
 #!/bin/bash
+
+# ref: http://dqn.sakusakutto.jp/2015/10/docker_mysqld_tutorial.html
+
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
-IMAGE_TAG_VERSION=${1:-dev}
-function input_password() {
-  echo $(read -sp "root Password: " pass && echo ${pass})
-  echo 1>&2
-}
+source ${SCRIPT_DIR}/lib/input_password.sh
+source ${SCRIPT_DIR}/env.sh
 
-docker run -d --privileged rcxxxxi/mysql:${IMAGE_TAG_VERSION} 
+if [ $# -eq 1 ]; then
+  echo "Usage:" >&2
+  echo "  $0 MYSQL_USER" >&2
+  exit 1
+fi
 
-MYSQL_VERSION=${1:-5.7}
-MYSQL_ROOT_PASSWORD=$(input_password)
-NAME=mysqld
+MYSQL_NEW_USER=$1
+MYSQL_USERS_GRANTED_HOST=localhost
+MYSQL_DATABASE_NAME=rcawaii_local
+MYSQL_ROOT_PASSWORD=$(input_password "root")
+MYSQL_NEW_USER_PASSWORD=$(input_password "new user's")
 
-docker run -d --name ${NAME} -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -p 3306:3306 mysql:5.7
+# create user
+docker exec -it ${CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} \
+  -e "create user '${NEW_USER}'@'${MYSQL_USERS_GRANTED_HOST}' identified by '${MYSQL_NEW_USER_PASSWORD}'"
+docker exec -it ${CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} \
+  -e "grant all privileges on ${MYSQL_DATABASE_NAME}.* to '${MYSQL_NEW_USER}'@'${MYSQL_USERS_GRANTED_HOST}'; flush privileges"
+
+echo 'Done!'
