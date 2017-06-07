@@ -5,4 +5,4 @@ source ${SCRIPT_DIR}/env.sh
 
 MYSQL_ROOT_PASSWORD=$(input_password)
 
-docker run -d --privileged --name ${CONTAINER_NAME} -p 3306:3306 -v ${MOUNTING_VOLUME} ${IMAGE_NAME}
+docker run -d --privileged --name ${MYSQL_CONTAINER_NAME} -p 3306:3306 -v ${MYSQL_MOUNTING_VOLUME} ${MYSQL_IMAGE_NAME}

@@ -30,15 +30,15 @@ if confirm 'Are you sure to set-up that database?'; then
 fi
 
 # drop && create database
-docker exec -it ${CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} \
+docker exec -it ${MYSQL_CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} \
   -e "drop database if exists '${MYSQL_DATABASE_NAME}; create database ${MYSQL_DATABASE_NAME} default character set utf8"
 
 # create user
-docker exec -it ${CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} \
-  -e "create user '${NEW_USER}'@'${MYSQL_USERS_GRANTED_HOST}' identified by '${MYSQL_NEW_USER_PASSWORD}'"
+docker exec -it ${MYSQL_CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} \
+  -e "create user '${MYSQL_NEW_USER}'@'${MYSQL_USERS_GRANTED_HOST}' identified by '${MYSQL_NEW_USER_PASSWORD}'"
 
 # grant permission
-docker exec -it ${CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} \
+docker exec -it ${MYSQL_CONTAINER_NAME} mysql -uroot -p${MYSQL_ROOT_PASSWORD} \
   -e "grant all privileges on ${MYSQL_DATABASE_NAME}.* to '${MYSQL_NEW_USER}'@'${MYSQL_USERS_GRANTED_HOST}'; flush privileges"
 
 echo 'Done!'
