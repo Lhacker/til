@@ -14,6 +14,7 @@ RUN set -x && \
   cd ${WEBAPP_ROOT} && \
 : 'install laravel' && \
   composer --no-plugins --no-scripts global require 'laravel/installer' && \
+  composer --no-plugins --no-scripts global require 'laravel-notification-channels/backport' && \
 : 'temporary fix for tty issue' && \
   sed -i 's/$process->setTty(true);/$process->setTty(false);/' /root/.composer/vendor/laravel/installer/src/NewCommand.php && \
   laravel new ${WEBAPP_NAME} && \
@@ -25,12 +26,13 @@ COPY http-vhost.conf ${APACHE_CONF_DIR}/conf.d/
 WORKDIR ${WEBAPP_DIR}
 
 # for 'composer update' command's vender package dependency, will copy it
-COPY ../../${WEBAPP_NAME}/vender ${WEBAPP_DIR}/
+RUN set -x && mkdir -v vendor/gmo
+COPY vendor/gmo/ ${WEBAPP_DIR}/vendor/gmo/
 
 RUN set -x && \
 : 'install php packages' && \
   source ~/.bashrc && \
-  composer update && \
+  composer update --no-scripts && \
 : 'setup apache settings' && \
   : 'Nothing to do for now' && \
 :

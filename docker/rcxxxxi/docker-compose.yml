@@ -16,6 +16,8 @@ services:
       - .env
     volumes:
       - ./webapp/:${WEBAPP_ROOT}/${WEBAPP_NAME}/
+    entrypoint:
+      - /sbin/init
   database:
     build:
       context: ./dockerfile/mysql
@@ -25,3 +27,7 @@ services:
     env_file:
       - .env
     container_name: rcxxxxi-database
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
