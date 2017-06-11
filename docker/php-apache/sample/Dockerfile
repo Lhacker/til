@@ -6,6 +6,6 @@ RUN set -x && \
 : 'setup environment' && \
   yum update -y && yum clean all && \
 : 'install httpd' && \
-  yum install -y httpd && \
+  yum install -y httpd mod_ssl && \
   systemctl enable httpd.service && \
 :
