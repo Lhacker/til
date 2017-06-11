@@ -2,8 +2,8 @@ version: '3.0'
 services:
   webapp:
     build:
-      context: ./dockerfile/webapp
-    image: rcxxxxi/centos7-webapp:${RCXXXXI_IMAGE_TAG}
+      context: ./rcxxxxi
+    image: ${RCXXXXI_WEBAPP_IMAGE_NAME}:${RCXXXXI_IMAGE_TAG}
     container_name: rcxxxxi-webapp
     hostname: rcxxxxi-webapp
     privileged: true
@@ -15,13 +15,13 @@ services:
     env_file:
       - .env
     volumes:
-      - ./webapp/:${WEBAPP_ROOT}/${WEBAPP_NAME}/
-    entrypoint:
+      - ./rcxxxxi/:${WEBAPP_ROOT}/${WEBAPP_NAME}/
+    command:
       - /sbin/init
   database:
     build:
       context: ./dockerfile/mysql
-    image: rcxxxxi/mysql:${RCXXXXI_IMAGE_TAG}
+    image: ${RCXXXXI_MYSQL_IMAGE_NAME}:${RCXXXXI_IMAGE_TAG}
     hostname: rcxxxxi-database
     privileged: true
     env_file:
