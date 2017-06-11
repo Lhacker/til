@@ -2,7 +2,7 @@ FROM centos7-php:5.6.30
 MAINTAINER Lhacker <starclown1@gmail.com>
 
 RUN set -x && \
-  source ~/.bashrc && \
+  source /etc/profile && \
 : 'setup environment' && \
   yum update -y && yum clean all && \
 : 'install httpd' && \
