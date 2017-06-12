@@ -2,7 +2,7 @@ version: '3.0'
 services:
   webapp:
     build:
-      context: ./rcxxxxi
+      context: ./rcxxxxi/dockerfile
     image: ${RCXXXXI_WEBAPP_IMAGE_NAME}:${RCXXXXI_IMAGE_TAG}
     container_name: rcxxxxi-webapp
     hostname: rcxxxxi-webapp
@@ -19,6 +19,7 @@ services:
     command:
       - /sbin/init
   database:
+    user: "999:999"
     build:
       context: ./dockerfile/mysql
     image: ${RCXXXXI_MYSQL_IMAGE_NAME}:${RCXXXXI_IMAGE_TAG}
