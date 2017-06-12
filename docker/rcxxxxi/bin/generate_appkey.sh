@@ -5,11 +5,11 @@
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
 cd ${SCRIPT_DIR}/.. && docker-compose run webapp bash -c " \
-  source ~/.bashrc && \
+  source /etc/profile && \
   composer require --no-plugins --no-scripts laravel-notification-channels/backport && \
   composer update && \
-  php artisan key:generate \
-  "
+  php artisan key:generate && \
+  :"
 
 # update app key in .env_local
 cd ${SCRIPT_DIR}/../rcxxxxi

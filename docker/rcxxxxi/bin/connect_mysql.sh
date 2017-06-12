@@ -18,7 +18,7 @@ if [ $# -lt 1 ]; then
 fi
 
 if [ "$(docker ps -a | grep ${MYSQL_CONTAINER_NAME})" != "" ]; then
-  docker exec -it ${MYSQL_CONTAINER_NAME} mysql -h localhost -P 3306 -u ${MYSQL_USER} -p${MYSQL_PASSWORD} ${SQL_OPTION}
+  docker exec -it ${MYSQL_CONTAINER_NAME} mysql -h localhost -P 3306 --protocol=tcp -u ${MYSQL_USER} -p${MYSQL_PASSWORD} ${SQL_OPTION}
 else
   echo "Can't find mysql container. Please start the container." >&2
 fi
