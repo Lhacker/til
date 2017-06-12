@@ -1,0 +1,16 @@
+php
+yum install -y httpd-devel
+phpbrew install 5.6.30 +default +apxs2 +openssl=/usr -- --with-libdir=lib64
+phpbrew switch 5.6.30
+
+httpd
+yum -y install mod_ssl
+yum -y install mod_ssl
+
+rcxxxxi
+オレオレ証明書
+Ref : http://qiita.com/clown0082/items/551d7c081ff6b41b1717
+Ref : https://jp.globalsign.com/support/faq/93.html
+openssl genrsa -out ./server.key 2048
+openssl req -new -key server.key > server.csr
+openssl x509 -in server.csr -days 365000 -req -signkey server.key > server.crt
