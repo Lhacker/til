@@ -14,3 +14,9 @@ Ref : https://jp.globalsign.com/support/faq/93.html
 openssl genrsa -out ./server.key 2048
 openssl req -new -key server.key > server.csr
 openssl x509 -in server.csr -days 365000 -req -signkey server.key > server.crt
+
+
+
+laravel /storage permission
+We should set permission as 777 under /storage
+chmod -R 777 rcxxxxi/storage
