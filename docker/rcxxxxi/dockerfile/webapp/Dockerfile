@@ -2,7 +2,7 @@ FROM centos7-php-apache:dev
 MAINTAINER Lhacker <starclown1@gmail.com>
 
 ARG WEBAPP_ROOT=${WEBAPP_ROOT:-/}
-ARG WEBAPP_NAME=rcxxxxi
+ARG WEBAPP_NAME=${WEBAPP_NAME:-rcxxxxi}
 ARG WEBAPP_DIR=${WEBAPP_ROOT}/${WEBAPP_NAME}
 ARG APACHE_CONFD_DIR=/etc/httpd/conf.d/
 

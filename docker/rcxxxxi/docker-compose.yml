@@ -3,6 +3,9 @@ services:
   webapp:
     build:
       context: ./rcxxxxi/dockerfile
+      args:
+        WEBAPP_ROOT: ${WEBAPP_ROOT}
+        WEBAPP_NAME: ${WEBAPP_NAME}
     image: ${RCXXXXI_WEBAPP_IMAGE_NAME}:${RCXXXXI_IMAGE_TAG}
     container_name: rcxxxxi-webapp
     hostname: rcxxxxi-webapp
