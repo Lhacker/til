@@ -7,8 +7,8 @@ services:
         WEBAPP_ROOT: ${WEBAPP_ROOT}
         WEBAPP_NAME: ${WEBAPP_NAME}
     image: ${RCXXXXI_WEBAPP_IMAGE_NAME}:${RCXXXXI_IMAGE_TAG}
-    container_name: rcxxxxi-webapp
-    hostname: rcxxxxi-webapp
+    container_name: ${RCXXXXI_WEBAPP_CONTAINER_NAME}
+    hostname: ${RCXXXXI_WEBAPP_CONTAINER_NAME}
     privileged: true
     links:
       - database
@@ -26,11 +26,11 @@ services:
     build:
       context: ./dockerfile/mysql
     image: ${RCXXXXI_MYSQL_IMAGE_NAME}:${RCXXXXI_IMAGE_TAG}
-    hostname: rcxxxxi-database
+    hostname: ${RCXXXXI_MYSQL_CONTAINER_NAME}
     privileged: true
     env_file:
       - .env
-    container_name: rcxxxxi-database
+    container_name: ${RCXXXXI_MYSQL_CONTAINER_NAME}
     ports:
       - "3306:3306"
     volumes:

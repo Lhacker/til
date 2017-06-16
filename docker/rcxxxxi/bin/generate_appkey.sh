@@ -4,7 +4,12 @@
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
-cd ${SCRIPT_DIR}/.. && docker-compose run webapp bash -c " \
+if [ "$(docker ps -a | grep ${RCXXXXI_WEBAPP_CONTAINER_NAME})" = "" ] && [ "$(docker ps -a | grep ${RCXXXXI_MYSQL_CONTAINER_NAME})" = "" ]; then
+  echo Please up webapp and database container >&2
+  exit
+fi
+
+docker exec -it ${RCXXXXI_WEBAPP_CONTAINER_NAME} bash -c " \
   source /etc/profile && \
   composer require --no-plugins --no-scripts laravel-notification-channels/backport && \
   composer update && \
