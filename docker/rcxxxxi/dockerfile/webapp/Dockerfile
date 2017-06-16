@@ -10,6 +10,7 @@ RUN set -x && \
 : 'setup environment' && \
   source /etc/profile && \
   yum update -y && yum clean all && \
+  yum install -y php-pdo php-mysql && \
   mkdir -pv ${WEBAPP_DIR} && \
 : 'install laravel' && \
   composer --no-plugins --no-scripts global require 'laravel/installer' && \
@@ -19,7 +20,7 @@ RUN set -x && \
 
 WORKDIR ${WEBAPP_DIR}
 
-## prepare Application setting files
+# prepare Application setting files
 COPY httpd-vhost.conf ${APACHE_CONFD_DIR}/
 COPY server.key ${APACHE_CONFD_DIR}/
 COPY server.csr ${APACHE_CONFD_DIR}/
