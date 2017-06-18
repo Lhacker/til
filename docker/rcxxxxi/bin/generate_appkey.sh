@@ -3,6 +3,7 @@
 # ref: http://dqn.sakusakutto.jp/2015/10/docker_mysqld_tutorial.html
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
+export $(cat ${SCRIPT_DIR}/../.env)
 
 if [ "$(docker ps -a | grep ${RCXXXXI_WEBAPP_CONTAINER_NAME})" = "" ] && [ "$(docker ps -a | grep ${RCXXXXI_MYSQL_CONTAINER_NAME})" = "" ]; then
   echo Please up webapp and database container >&2
@@ -18,4 +19,4 @@ docker exec -it ${RCXXXXI_WEBAPP_CONTAINER_NAME} bash -c " \
 
 # update app key in .env_local
 cd ${SCRIPT_DIR}/../rcxxxxi
-sed -i "s/APP_KEY=.*/APP_KEY=$(grep 'APP_KEY=' .env)/" .env_local
+sed -i -e "s|APP_KEY=.*|$(grep 'APP_KEY=' .env)|" .env_local
