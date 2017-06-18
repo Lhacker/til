@@ -19,7 +19,7 @@ RUN set -x && \
   chmod +x phpbrew && \
   mv phpbrew /usr/local/bin/phpbrew && \
   phpbrew init && \
-  phpbrew install ${PHP_VERSION} +default +apxs2 +openssl=/usr -- --with-libdir=lib64 && \
+  phpbrew install ${PHP_VERSION} +default +mysql +apxs2 +openssl=/usr -- --with-libdir=lib64 && \
   echo "source ${PHPBREW_HOME}/bashrc" > /etc/profile.d/phpbrew.sh && \
   source ${PHPBREW_HOME}/bashrc && \
   phpbrew switch ${PHP_VERSION} && \
