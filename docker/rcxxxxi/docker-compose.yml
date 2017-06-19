@@ -10,11 +10,11 @@ services:
     container_name: ${RCXXXXI_WEBAPP_CONTAINER_NAME}
     hostname: ${RCXXXXI_WEBAPP_CONTAINER_NAME}
     privileged: true
-    links:
-      - database
+    networks:
+      - rcxxxxi-network
     ports:
-      - "19080:80"
-      - "19443:443"
+      - "127.0.0.1:19080:80"
+      - "127.0.0.1:19443:443"
     env_file:
       - .env
     volumes:
@@ -25,13 +25,16 @@ services:
     user: "999:999"
     build:
       context: ./dockerfile/mysql
-    image: ${RCXXXXI_MYSQL_IMAGE_NAME}:${RCXXXXI_IMAGE_TAG}
-    hostname: ${RCXXXXI_MYSQL_CONTAINER_NAME}
-    privileged: true
+    image: ${RCXXXXI_DB_IMAGE_NAME}:${RCXXXXI_IMAGE_TAG}
+    hostname: ${RCXXXXI_DB_CONTAINER_NAME}
+    networks:
+      - rcxxxxi-network
     env_file:
       - .env
-    container_name: ${RCXXXXI_MYSQL_CONTAINER_NAME}
-    ports:
-      - "3306:3306"
+    container_name: ${RCXXXXI_DB_CONTAINER_NAME}
     volumes:
       - ./data:/var/lib/mysql
+
+networks:
+  rcxxxxi-network:
+      driver: bridge

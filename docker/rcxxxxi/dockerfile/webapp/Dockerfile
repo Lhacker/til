@@ -10,7 +10,7 @@ RUN set -x && \
 : 'setup environment' && \
   source /etc/profile && \
   yum update -y && yum clean all && \
-  yum install -y php-pdo php-mysql && \
+  yum install -y php-mysqlnd && \
   mkdir -pv ${WEBAPP_DIR} && \
 : 'install laravel' && \
   composer --no-plugins --no-scripts global require 'laravel/installer' && \
