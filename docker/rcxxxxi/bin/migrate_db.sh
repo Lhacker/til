@@ -10,7 +10,7 @@ fi
 
 docker exec -it ${RCXXXXI_WEBAPP_CONTAINER_NAME} bash -c " \
   source /etc/profile && \
-  php artisan migrate && \
+  php artisan migrate:refresh && \
   :"
 
 echo done migration

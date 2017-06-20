@@ -5,6 +5,7 @@
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
 export $(cat ${SCRIPT_DIR}/../.env)
+DB_USERS_GRANTED_HOST=${RCXXXXI_WEBAPP_CONTAINER_NAME}
 
 if [ "$(docker ps | grep ${RCXXXXI_DB_CONTAINER_NAME})" = "" ]; then
   docker-compose up -d database
@@ -27,6 +28,10 @@ docker exec -i ${RCXXXXI_DB_CONTAINER_NAME} \
 # grant permission
 docker exec -i ${RCXXXXI_DB_CONTAINER_NAME} \
   mysql -uroot -p${DB_ROOT_PASSWORD} -h localhost --protocol=tcp --port=${DB_PORT} \
-  -e "grant all privileges on ${DB_DATABASE}.* to '${DB_USER}'@'${DB_USERS_GRANTED_HOST}'; flush privileges"
+  -e " \
+    grant all privileges on ${DB_DATABASE}.* to '${DB_USER}'@'localhost'; \
+    grant all privileges on ${DB_DATABASE}.* to '${DB_USER}'@'${DB_USERS_GRANTED_HOST}'; \
+    flush privileges \
+  "
 
 echo done
