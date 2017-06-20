@@ -9,4 +9,4 @@ if [ "$(docker ps -a | grep ${RCXXXXI_DB_CONTAINER_NAME})" = "" ]; then
   echo "Can't find mysql container. Please start the container." >&2
 fi
 
-docker exec -it ${RCXXXXI_DB_CONTAINER_NAME} mysql -h localhost -P ${DB_PORT} --protocol=tcp -u ${DB_USER} -p${DB_PASSWORD} ${DB_DATABSE} $@
+docker exec -it ${RCXXXXI_DB_CONTAINER_NAME} mysql -h localhost -P ${DB_PORT} --protocol=tcp -u ${DB_USER} -p${DB_PASSWORD} ${DB_DATABASE} $@
