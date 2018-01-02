@@ -1,0 +1,28 @@
+FROM amazonlinux:2017.09
+MAINTAINER Uzurachan <bussiness.ack@gmail.com>
+
+ENV TZ Asia/Tokyo
+
+# after built, will use below user(sudo user)
+ARG USERNAME=${USERNAME:-ec2-user}
+
+RUN set -x && \
+: "set default timezone as japan tokyo" && \
+  ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+: "for man page, comment out 'tsflags=nodocs' option" && \
+  sed -i 's/^tsflags/#tsflags/g' /etc/yum.conf && \
+: "install items" && \
+  yum update -y && yum clean all && \
+  yum install -y man man-pages && \
+  yum install -y vim less sudo which passwd && \
+  yum install -y telnet wget traceroute tcpdump lsof && \
+  yum install -y bind-utils && \
+  yum install -y gcc perl && \
+  yum install -y perl-Test-Harness perl-Test-Simple make && \
+: create "ec2-user" && \
+  useradd -m ${USERNAME} && \
+  usermod -aG wheel ${USERNAME} && \
+  echo "%wheel        ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/wheel-group && \
+  :
+
+USER ${USERNAME}
