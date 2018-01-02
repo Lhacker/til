@@ -1,0 +1,23 @@
+FROM centos:6
+MAINTAINER Lhacker <starclown1@gmail.com>
+
+ARG ROOT_PASSWORD=${ROOT_PASSWORD:-root}
+
+ENV TZ Asia/Tokyo
+
+RUN set -x && \
+: "set default timezone as japan tokyo" && \
+  ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+: "for man page, comment out 'tsflags=nodocs' option" && \
+  sed -i 's/^tsflags/#tsflags/g' /etc/yum.conf && \
+: "set root password" && \
+  echo ${ROOT_PASSWORD} | passwd root --stdin && \
+: "install items" && \
+  yum update -y && yum clean all && \
+  yum install -y man man-pages && \
+  yum install -y vim less sudo which && \
+  yum install -y telnet wget traceroute tcpdump lsof && \
+  yum install -y bind-utils && \
+  yum install -y gcc perl && \
+  yum install -y perl-Test-Harness perl-Test-Simple make && \
+  :
