@@ -1,0 +1,9 @@
+version: '3'
+services:
+  webpack:
+    image: webpack:4
+    build: .
+    container_name: webpack-dev
+    volumes:
+      - "./app:/app"
+    command: webpack --mode development -d --watch
