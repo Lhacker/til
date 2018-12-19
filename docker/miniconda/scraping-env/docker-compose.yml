@@ -6,4 +6,6 @@ services:
     image: ${APPNAME}:${TAG_VERSION}
     container_name: ${APPNAME}_${TAG_VERSION}
     hostname: ${APPNAME}
+    volumes:
+      - "./app:/app"
     command: "tail -f /dev/null"

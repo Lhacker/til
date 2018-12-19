@@ -18,10 +18,10 @@ MAX_INDEX_FOR_SEARCH = 20
 THRESHOLD_YEAR = 1980
 TSV_FILE_NAME = "movie-data.tsv"
 
-def append_tsv(movie_name, movie_url, movie_image_url):
+def append_tsv(movie_name, movie_url, movie_image_url, published_date):
     with open(TSV_FILE_NAME, 'a', newline="") as f:
         writer = csv.writer(f, delimiter="\t", quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        writer.writerow([movie_name, movie_url, movie_image_url])
+        writer.writerow([movie_name, movie_url, movie_image_url, published_date])
 
 def main():
     html_doc = requests.get(EIGA_COM_URL + "/movie/all/")
@@ -57,19 +57,24 @@ def main():
                 html_doc = requests.get(movie_url)
                 soup = BeautifulSoup(html_doc.content, 'html.parser') 
                 
-                y = soup.find(text="製作年")
-                if y is None:
+                published_date_with_label = soup.select(".opn_date")
+                if published_date_with_label is not None and published_date_with_label:
+                    published_date = published_date_with_label[0].find("strong").get_text("", strip=True)
+                    published_date = re.sub(r'年|月', '-', published_date[:-1])
+
+                created_year_label = soup.find(text="製作年")
+                if created_year_label is None:
                     continue
-                created_year = int(y.findNext("td").get_text("", strip=True)[:-1])
+                created_year = int(created_year_label.findNext("td").get_text("", strip=True)[:-1])
                 if created_year < THRESHOLD_YEAR:
                     continue
-                
+
                 movie_name = soup.select(".moveInfoBox h1")[0].get_text("", strip=True)
                 movie_image_url = soup.select(".pictBox img")[0].attrs["src"].split("?")[0];
                 if (movie_image_url.count("/noposter/")):
                     movie_image_url = ""
 
-                append_tsv(movie_name, movie_url, movie_image_url)
+                append_tsv(movie_name, movie_url, movie_image_url, published_date)
 
                 sleep(0.5)
 
