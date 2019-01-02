@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="https://fb.me/react-15.2.0.js"></script>
+    <script src="https://fb.me/react-dom-15.2.0.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/javascript">
+      const Ticker = React.createClass({
+        getInitialState: function() {
+          return {times: 0};
+        },
+        componentDidMount: function() {
+          this.interval = setInterval(this.tick, 1000);
+        },
+        componentWillUnmount: function() {
+          clearInterval(this.interval);
+        },
+        render: function() {
+          return React.createElement(
+            "div", null, "Times: ", this.state.times
+          );
+        },
+        tick: function() {
+          this.setState({times: this.state.times + 1});
+        }
+      });
+
+      const helloElement = React.createElement(Ticker);
+      ReactDOM.render(helloElement, content);
+    </script>
+  </body>
+</html>

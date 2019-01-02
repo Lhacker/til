@@ -5,14 +5,19 @@
     <title>Hello React!</title>
     <script src="https://fb.me/react-15.2.0.js"></script>
     <script src="https://fb.me/react-dom-15.2.0.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js"></script>
   </head>
   <body>
     <div id="content"></div>
     <script type="text/javascript">
-      const helloElement = React.createElement(
-        "div", {class: 'example-class'}, "Hello!"
-      );
+      const HelloClass = React.createClass({
+        render: function() {
+          return React.createElement(
+            "div", {class: "sample"}, "Hellooooo!", this.props.name, "nyan"
+          );
+        }
+      });
+
+const helloElement = React.createElement(HelloClass, {name: "Taro"});
       ReactDOM.render(helloElement, content);
     </script>
   </body>

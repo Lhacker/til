@@ -9,10 +9,14 @@
   </head>
   <body>
     <div id="content"></div>
-    <script type="text/javascript">
-      const helloElement = React.createElement(
-        "div", {class: 'example-class'}, "Hello!"
-      );
+    <script type="text/babel">
+      const HelloClass = React.createClass({
+        render: function() {
+          return <div>Hello, {this.props.name}</div>;
+        }
+      });
+
+      const helloElement = <HelloClass name="Taro" />;
       ReactDOM.render(helloElement, content);
     </script>
   </body>
