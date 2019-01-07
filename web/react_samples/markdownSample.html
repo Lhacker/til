@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="https://fb.me/react-15.2.0.js"></script>
+    <script src="https://fb.me/react-dom-15.2.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.10.3/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/babel">
+      const Editor = React.createClass({
+        getInitialState: function() {
+          return {value: "**Markdown** を記述できます"};
+        },
+        handleChange: function(e) {
+          this.setState({value: e.target.value});
+        },
+        markup: function() {
+          return {__html: marked(this.state.value)};
+        },
+        render: function() {
+          return <div>
+            <h3>Input</h3>
+            <textarea
+              onChange={this.handleChange}
+              defaultValue={this.state.value} />
+            <h3>Output</h3>
+            <div dangerouslySetInnerHTML={this.markup()}></div>
+            </div>;
+        }
+      });
+
+      ReactDOM.render(<Editor />, content);
+    </script>
+  </body>
+</html>
