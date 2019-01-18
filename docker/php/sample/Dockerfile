@@ -12,7 +12,7 @@ RUN set -x && \
 : set environment && \
   yum update -y && yum clean all && \
   yum install -y epel-release && \
-  yum install -y php gcc openssl-devel libssl-devel httpd-devel libxml2-devel bzip2 bzip2-devel libmcrypt-devel libxslt-devel readline-devel && \
+  yum install -y php gcc curl-devel openssl-devel libssl-devel httpd-devel libxml2-devel bzip2 bzip2-devel libmcrypt-devel libxslt-devel readline-devel && \
   mkdir -pv /etc/php && \
 : install phpbrew && \
   curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew && \
