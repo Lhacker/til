@@ -1,4 +1,4 @@
-FROM centos-php:${PHP_VERSION}
+FROM centos7-php:7.1.4
 MAINTAINER Lhacker <starclown1@gmail.com>
 
 ARG APP_DIR=${APP_DIR:-/root}
@@ -11,6 +11,7 @@ RUN set -x && \
   mkdir -pv ${APP_DIR} && \
   cd ${APP_DIR} && \
 : install laravel && \
+  source /etc/profile.d/phpbrew.sh && \
   composer --no-plugins --no-scripts global require 'laravel/installer' && \
-  laravel new --no-plugins --no-scripts ${APP_NAME} && \
+  laravel new -q ${APP_NAME} && \
 :
