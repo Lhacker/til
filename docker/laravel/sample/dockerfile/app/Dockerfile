@@ -13,5 +13,5 @@ RUN set -x && \
 : install laravel && \
   source /etc/profile.d/phpbrew.sh && \
   composer --no-plugins --no-scripts global require 'laravel/installer' && \
-  laravel new -q ${APP_NAME} && \
+: laravel new -q ${APP_NAME} && \
 :
