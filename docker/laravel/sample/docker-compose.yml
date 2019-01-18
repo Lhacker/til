@@ -1,0 +1,37 @@
+version: '3.0'
+services:
+  app:
+    build:
+      context: ./dockerfile/app
+      args:
+        APP_DIR: ${APP_DIR}
+        APP_NAME: ${APP_NAME}
+    image: ${APP_IMAGE_NAME}:${IMAGE_TAG}
+    container_name: ${APP_CONTAINER_NAME}
+    hostname: ${APP_CONTAINER_NAME}
+    privileged: true
+    networks:
+      - laravel-network
+    ports:
+      - "127.0.0.1:20080:80"
+      - "127.0.0.1:20443:443"
+    env_file:
+      - .env
+    command:
+      - /sbin/init
+  database:
+    user: "999:999"
+    build:
+      context: ./dockerfile/mysql
+    image: ${DB_IMAGE_NAME}:${IMAGE_TAG}
+    hostname: ${DB_CONTAINER_NAME}
+    networks:
+      - laravel-network
+    env_file:
+      - .env
+    container_name: ${DB_CONTAINER_NAME}
+    volumes:
+      - ./data:/var/lib/mysql
+networks:
+  laravel-network:
+      driver: bridge
