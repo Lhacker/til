@@ -9,7 +9,7 @@ services:
     image: ${APP_IMAGE_NAME}:${IMAGE_TAG}
     container_name: ${APP_CONTAINER_NAME}
     hostname: ${APP_CONTAINER_NAME}
-    privileged: true
+#    privileged: true
     networks:
       - laravel-network
     ports:
@@ -19,8 +19,7 @@ services:
       - ./${APP_NAME}/:${APP_DIR}/${APP_NAME}/
     env_file:
       - .env
-    command:
-      - /sbin/init
+    command: cd ${APP_DIR}/${APP_NAME}/ && php artisan serve && tail -f /dev/null
   database:
     user: "999:999"
     build:
