@@ -2,7 +2,7 @@ version: "3"
 services:
   web:
     # username/repo:tag を皆さんの名前とイメージに置き換えます
-    image: Lhacker/nginx:latest
+    image: nginx:latest
     deploy:
       replicas: 5
       resources:

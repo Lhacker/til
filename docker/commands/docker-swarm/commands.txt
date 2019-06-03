@@ -4,3 +4,7 @@ docker-machine stop myvm2
 docker-machine start myvm2
 docker-machine env myvm2
 docker-machine ssh myvm2 "docker swarm join --token SWMTKN-1-2tfrdudnweexathe 192.168.99.100:2377"
+
+docker-machine scp docker-compose.yml myvm1:~
+docker-machine ssh myvm1 "docker stack deploy -c docker-compose.yml getstartedlab"
+docker-machine ssh myvm1 "docker service ls"
