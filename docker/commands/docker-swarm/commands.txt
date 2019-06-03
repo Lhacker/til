@@ -1,0 +1,6 @@
+docker-machine ssh myvm1
+docker-machine ssh myvm1 "docker swarm init --advertise-addr=192.168.99.100"
+docker-machine stop myvm2
+docker-machine start myvm2
+docker-machine env myvm2
+docker-machine ssh myvm2 "docker swarm join --token SWMTKN-1-2tfrdudnweexathe 192.168.99.100:2377"
