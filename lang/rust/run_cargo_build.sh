@@ -2,4 +2,4 @@
 
 RUST_VERSION=1.31.0
 
-docker run --rm --user "$(id -u)":"$(id -g)" -v "$PWD":/usr/src/myapp -w /usr/src/myapp rust:$RUST_VERSION cargo build --release
+docker run --rm -e USER=root -v "$PWD":/usr/src/myapp -w /usr/src/myapp rust:$RUST_VERSION cargo build --release
