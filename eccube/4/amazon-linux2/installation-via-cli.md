@@ -45,3 +45,6 @@ bin/console eccube:install
 # httpd confを設定
 # 同一ディレクトリに置いているeccube4.conf を /etc/httpd/conf.d/ 配下に配置
 # sudo systemctl restart httpd を実施
+
+# http://{your ip} にアクセスして確認。
+# http://{your ip}/admin にアクセスして管理画面URLとパスワードを変更すること。
