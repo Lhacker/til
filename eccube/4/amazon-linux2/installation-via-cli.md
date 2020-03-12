@@ -31,8 +31,8 @@ sudo yum install php-common php-mbstring php-json php-xml php-zip php-cURL php-i
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === 'e0012edf3e80b6978849f5eff0d4b4e4c79ff1609dd1e613307e16318854d24ae64f26d17af3ef0bf7cfb710ca74755a') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 php composer-setup.php
-sudo mv composer.phar /usr/bin/composer
-sudo chown root:root /usr/bin/composer
+sudo mv composer.phar /usr/local/bin/composer
+sudo chown root:root /usr/local/bin/composer
 
 # SQLite周りでエラーが出るが無視してOK
 composer create-project ec-cube/ec-cube ec-cube4 "4.0.3" --keep-vcs
