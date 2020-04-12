@@ -44,6 +44,7 @@ vim .env
 # smtp://smtp.mailtrap.io:2525?encryption=tls&auth_mode=login&username=01266b0da879a8&password=hogehoge
 
 # 参考: https://www.mahirokazuko.com/entry/2020/01/03/235548
+MAILER_URL=smtp://email-smtp.us-east-1.amazonaws.com:587?encryption=tls&username=USERNAME&password=HOGEHOGE
 
 # httpd confを設定
 # 同一ディレクトリに置いているeccube4.conf を /etc/httpd/conf.d/ 配下に配置
