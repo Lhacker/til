@@ -4,10 +4,9 @@ sudo yum update -y
 sudo mv -v /etc/localtime{,.default}
 sudo ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
-
+sudo yum install -y git
 sudo amazon-linux-extras install vim
-
-sudo yamazon-linux-extras info php7.2
+sudo yamazon-linux-extras install php7.2
 
 # Mysqlインストール
 # https://qiita.com/2no553/items/952dbb8df9a228195189
