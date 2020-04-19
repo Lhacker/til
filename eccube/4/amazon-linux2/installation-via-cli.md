@@ -37,6 +37,7 @@ sudo chown root:root /usr/local/bin/composer
 composer create-project ec-cube/ec-cube ec-cube4 "4.0.3" --keep-vcs
 sudo mv -v ec-cube4 /var/www/html/
 cd /var/www/html/ec-cube4/
+composer install
 bin/console eccube:install
 
 # MAILER_URLも手動で設定
